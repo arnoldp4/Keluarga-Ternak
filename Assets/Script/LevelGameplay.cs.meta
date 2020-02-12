@@ -1,0 +1,57 @@
+fileFormatVersion: 2
+guid: 8d28a8d7e3e8d4245b4cf7a82f1bce99
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - FloatTxt: {instanceID: 0}
+  - CurrentLvlTxt: {instanceID: 0}
+  - TransporterMoneyTxt: {instanceID: 0}
+  - StorageMoneyTxt: {instanceID: 0}
+  - MoneyTxt: {instanceID: 0}
+  - WellTxt: {instanceID: 0}
+  - GoalTxt: {instanceID: 0}
+  - TelurTxt: {instanceID: 0}
+  - TlrKeringTxt: {instanceID: 0}
+  - KueTxt: {instanceID: 0}
+  - SusuTxt: {instanceID: 0}
+  - MentegaTxt: {instanceID: 0}
+  - KejuTxt: {instanceID: 0}
+  - WolTxt: {instanceID: 0}
+  - BenangTxt: {instanceID: 0}
+  - KainTxt: {instanceID: 0}
+  - GameCanvas: {instanceID: 0}
+  - ResultCanvas: {instanceID: 0}
+  - BuildPanel: {instanceID: 0}
+  - FloatText: {fileID: 2700011912644529331, guid: 6a78afae7926a6246abe0846c6140832,
+      type: 3}
+  - AyamObj: {instanceID: 0}
+  - SapiObj: {instanceID: 0}
+  - DombaObj: {instanceID: 0}
+  - AnjingObj: {instanceID: 0}
+  - KucingObj: {instanceID: 0}
+  - BeruangObj: {instanceID: 0}
+  - TikusObj: {instanceID: 0}
+  - TransporterBtn: {instanceID: 0}
+  - AyamBtn: {instanceID: 0}
+  - SapiBtn: {instanceID: 0}
+  - DombaBtn: {instanceID: 0}
+  - AnjingBtn: {instanceID: 0}
+  - KucingBtn: {instanceID: 0}
+  - DEHLock: {instanceID: 0}
+  - DEH: {instanceID: 0}
+  - BakeryLock: {instanceID: 0}
+  - Bakery: {instanceID: 0}
+  - DairyLock: {instanceID: 0}
+  - Dairy: {instanceID: 0}
+  - CheeseLock: {instanceID: 0}
+  - Cheese: {instanceID: 0}
+  - SpinneryLock: {instanceID: 0}
+  - Spinnery: {instanceID: 0}
+  - FabricLock: {instanceID: 0}
+  - Fabric: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
