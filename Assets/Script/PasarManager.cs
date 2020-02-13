@@ -10,7 +10,7 @@ public class PasarManager : MonoBehaviour
     public static bool cekPesawat = false, ctrBeli = false;
 #endregion
     void cekBatasPesawatUang(){
-        if(LevelGameplay.LevelMoney <= totalbeli){
+        if(LevelGameplay.LevelMoney >= totalbeli){
             if(jumlahbeli >= 5){
                 Debug.Log("Jumlah Beli: " + jumlahbeli + " dengan Batasan: 5");
                 ctrBeli = true;
@@ -24,9 +24,11 @@ public class PasarManager : MonoBehaviour
     }
     public void UpgradeWell(){
         LevelGameplay.UpgradeWell++;
+        LevelGameplay.LevelMoney -= PasarTextManager.CostUpgradeWell;
     }
     public void UpgradeTransporter(){
         LevelGameplay.UpgradeTransporter++;
+        LevelGameplay.LevelMoney-= PasarTextManager.CostUpradeTransporter;
     }
     public void BuySyrup(){
         cekBatasPesawatUang();
@@ -47,6 +49,6 @@ public class PasarManager : MonoBehaviour
         }
     }
     public void ApplyToBuy(){
-        cekPesawat = true; ctrBeli = true;
+        cekPesawat = true; ctrBeli = true; LevelGameplay.LevelMoney -= totalbeli;
     }
 }

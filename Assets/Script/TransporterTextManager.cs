@@ -9,7 +9,9 @@ public class TransporterTextManager : MonoBehaviour
     public Text ApplySellTxt, 
         TelurTxt, TlrKeringTxt, KueTxt,
         SusuTxt, MentegaTxt, KejuTxt,
-        WolTxt, BenangTxt, KainTxt;
+        WolTxt, BenangTxt, KainTxt,
+        SirupTxt, TepungTxt, CatTxt,
+        PancakeTxt, PizzaTxt, BajuTxt;
     public static bool cekTransporter = false;
     public Slider TPProgressBar;
     public Button SellBtnCek;
@@ -17,11 +19,12 @@ public class TransporterTextManager : MonoBehaviour
     bool ctrDatangKembali = false;
 
     void Start() {
-        TPProgressBar.maxValue = LevelGameplay.TPDeliveryTime;
+        
     }
     // Update is called once per frame
     void Update()
     {
+        TPProgressBar.maxValue = LevelGameplay.TPDeliveryTime;
         if (TransporterManager.jumlahjual == 0) SellBtnCek.interactable = false;
         else SellBtnCek.interactable = true;
         UpdateBahan();
@@ -33,7 +36,11 @@ public class TransporterTextManager : MonoBehaviour
         KueTxt.text = "Kue: " + TransporterManager.jualkue; SusuTxt.text = "Susu: " + TransporterManager.jualsusu;
         MentegaTxt.text = "Mentega: " + TransporterManager.jualbutter; KejuTxt.text = "Keju: " + TransporterManager.jualkeju;
         WolTxt.text = "Wol: " + TransporterManager.jualwol; BenangTxt.text = "Benang: " + TransporterManager.jualbenang;
-        KainTxt.text = "Kain: " + TransporterManager.jualkain; ApplySellTxt.text = "Total Jual: " + TransporterManager.totaljual;
+        KainTxt.text = "Kain: " + TransporterManager.jualkain; SirupTxt.text = "Sirup: " + TransporterManager.jualsirup;
+        TepungTxt.text = "Tepung: " + TransporterManager.jualtepung; CatTxt.text = "Ember Cat: " + TransporterManager.jualcat;
+        PancakeTxt.text = "Pancake: " + TransporterManager.jualpancake; PizzaTxt.text = "Pizza: " + TransporterManager.jualpizza;
+        BajuTxt.text = "Baju: " + TransporterManager.jualbaju;
+        ApplySellTxt.text = "Total Jual: " + TransporterManager.totaljual;
     }
 
     void LoadingDelivery(){

@@ -7,14 +7,18 @@ public class TransporterManager : MonoBehaviour
 #region  Variable buat Transporter
     public static int totaljual = 0, jumlahjual = 0, jualtelur = 0, jualde = 0, jualkue = 0,
         jualsusu = 0, jualbutter = 0, jualkeju = 0,
-        jualwol = 0, jualbenang = 0, jualkain = 0;
+        jualwol = 0, jualbenang = 0, jualkain = 0,
+        jualsirup = 0, jualtepung = 0, jualcat = 0,
+        jualpancake = 0, jualpizza = 0, jualbaju = 0;
     public static bool ctrJual = false;
 #endregion
 #region Jual Bahan Lewat Transporter
     public void RevertAllStaticToZero(){
         totaljual = 0; jumlahjual = 0; jualtelur = 0; jualde = 0; jualkue = 0;
         jualsusu = 0; jualbutter = 0; jualkeju = 0;
-        jualwol = 0; jualbenang = 0; jualkain = 0; ctrJual = false;
+        jualwol = 0; jualbenang = 0; jualkain = 0;
+        jualsirup = 0; jualtepung = 0; jualcat = 0;
+        jualpancake = 0; jualpizza = 0; jualbaju = 0; ctrJual = false;
     }
     void cekBatasTransporter(){
         if(jumlahjual >= LevelGameplay.TransporterMax){
@@ -22,6 +26,7 @@ public class TransporterManager : MonoBehaviour
             ctrJual = true;
         } else { jumlahjual++; }
     }
+#region Bahan Utama Telur
     public void SellEgg(){
         cekBatasTransporter();
         if(LevelGameplay.LevelTelur != 0 && jualtelur <= LevelGameplay.LevelTelur && ctrJual == false){
@@ -43,6 +48,8 @@ public class TransporterManager : MonoBehaviour
             jualkue += 1;
         }
     }
+#endregion
+#region Bahan Utama Susu
     public void SellMilk(){
         cekBatasTransporter();
         if(LevelGameplay.LevelSusu!=0 && jualsusu <= LevelGameplay.LevelSusu && ctrJual == false){
@@ -64,6 +71,8 @@ public class TransporterManager : MonoBehaviour
             jualkeju += 1;
         }
     }
+#endregion
+#region Bahan Utama Wol  
     public void SellWool(){
         cekBatasTransporter();
         if(LevelGameplay.LevelWol!=0 && jualwol <= LevelGameplay.LevelWol && ctrJual == false){
@@ -85,6 +94,51 @@ public class TransporterManager : MonoBehaviour
             jualkain += 1;
         }
     }
+#endregion
+#region Bahan Khusus
+    public void SellSyrup(){
+        cekBatasTransporter();
+        if(LevelGameplay.LevelSirup!=0 && jualsirup <= LevelGameplay.LevelSirup && ctrJual == false){
+            totaljual += 10;
+            jualsirup += 1;
+        }
+    }
+    public void SellFlour(){
+        cekBatasTransporter();
+        if(LevelGameplay.LevelTepung!=0 && jualtepung <= LevelGameplay.LevelTepung && ctrJual == false){
+            totaljual += 15;
+            jualtepung += 1;
+        }
+    }
+    public void SellPaintCan(){
+        cekBatasTransporter();
+        if(LevelGameplay.LevelCat!=0 && jualcat <= LevelGameplay.LevelCat && ctrJual == false){
+            totaljual += 50;
+            jualcat += 1;
+        }
+    }
+    public void SellPancake(){
+        cekBatasTransporter();
+        if(LevelGameplay.LevelPancake!=0 && jualpancake <= LevelGameplay.LevelPancake && ctrJual == false){
+            totaljual += 350;
+            jualpancake += 1;
+        }
+    }
+    public void SellPizza(){
+        cekBatasTransporter();
+        if(LevelGameplay.LevelPizza!=0 && jualpizza <= LevelGameplay.LevelPizza && ctrJual == false){
+            totaljual += 1000;
+            jualpizza += 1;
+        }
+    }
+    public void SellClothes(){
+        cekBatasTransporter();
+        if(LevelGameplay.LevelBaju!=0 && jualbaju <= LevelGameplay.LevelBaju && ctrJual == false){
+            totaljual += 3000;
+            jualbaju += 1;
+        }
+    }
+#endregion
     public void ApplyToTransport(){
         LevelGameplay.LevelTelur -= jualtelur;
         LevelGameplay.LevelTlrKering -= jualde;
@@ -95,6 +149,12 @@ public class TransporterManager : MonoBehaviour
         LevelGameplay.LevelWol -= jualwol;
         LevelGameplay.LevelBenang -= jualbenang;
         LevelGameplay.LevelKain -= jualkain;
+        LevelGameplay.LevelSirup -= jualsirup;
+        LevelGameplay.LevelTepung -= jualtepung;
+        LevelGameplay.LevelCat -= jualcat;
+        LevelGameplay.LevelPancake -= jualpancake;
+        LevelGameplay.LevelPizza -= jualpizza;
+        LevelGameplay.LevelBaju -= jualbaju;
         ctrJual = true; TransporterTextManager.cekTransporter = true;
     }
 #endregion

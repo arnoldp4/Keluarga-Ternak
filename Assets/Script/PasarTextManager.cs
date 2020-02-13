@@ -7,7 +7,7 @@ public class PasarTextManager : MonoBehaviour
 {
     //Variable buat Update Pasar dan Upgrade
     public static int CostUpgradeWell, CostUpradeTransporter;
-    public Text SirupTxt, TepungTxt, CatTxt,
+    public Text SirupTxt, TepungTxt, CatTxt, TotalBeliTxt,
         UpgradeTransporterTxt, UpgradeWellTxt, 
         CostTransporterTxt, CostWellTxt;
     public Slider PasarProgressBar;
@@ -17,7 +17,7 @@ public class PasarTextManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PasarProgressBar.value = 150;
+        PasarProgressBar.value = 100;
     }
 
     // Update is called once per frame
@@ -34,7 +34,8 @@ public class PasarTextManager : MonoBehaviour
     }
     void UpdateBeliPasar(){
         SirupTxt.text = "Sirup: " + PasarManager.beliSirup; TepungTxt.text = "Tepung: " + PasarManager.beliTepung;
-        CatTxt.text = "Ember Cat: " + PasarManager.beliCat;
+        CatTxt.text = "Ember Cat: " + PasarManager.beliCat; 
+        TotalBeliTxt.text = "Total Beli: " + PasarManager.totalbeli;
         UpgradeTransporterTxt.text = "Transporter Level: " + LevelGameplay.UpgradeTransporter;
         UpgradeWellTxt.text = "Sumur Level: " + LevelGameplay.UpgradeWell;
     }
@@ -87,7 +88,7 @@ public class PasarTextManager : MonoBehaviour
             LevelGameplay.LevelTepung += PasarManager.beliTepung;
             LevelGameplay.LevelCat += PasarManager.beliCat;
             PasarManager.beliSirup = 0; PasarManager.beliTepung = 0; PasarManager.beliCat = 0;
-            PasarManager.totalbeli = 0; PasarProgressBar.value = PasarProgressBar.minValue;
+            PasarManager.totalbeli = 0; PasarManager.jumlahbeli = 0; PasarProgressBar.value = PasarProgressBar.minValue;
             datangTransporter = 0; PasarManager.ctrBeli = false; PasarManager.cekPesawat = false;
             PasarProgressBar.gameObject.SetActive(false);}
     }

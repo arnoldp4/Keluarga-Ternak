@@ -15,7 +15,7 @@ public class LevelGameplay : MonoBehaviour
         LevelSirup, LevelPancake, LevelTepung, LevelPizza, LevelCat, LevelBaju; //Bahan khusus untuk bangunan tertentu
     //Variable buat apply yang ada di Level
     public Text FloatTxt, CurrentLvlTxt, 
-        PasarMoneyTxt, TransporterMoneyTxt, StorageMoneyTxt, MoneyTxt, WellTxt, GoalTxt, 
+        PasarMoneyTxt, TransporterMoneyTxt, StorageMoneyTxt, MoneyTxt, WellTxt, GoalTxt, BtnWellTxt,
         TelurTxt, TlrKeringTxt, KueTxt,
         SusuTxt, MentegaTxt, KejuTxt,
         WolTxt, BenangTxt, KainTxt, 
@@ -28,15 +28,21 @@ public class LevelGameplay : MonoBehaviour
 
     //Variable buat selesai level
     public GameObject GameCanvas, ResultCanvas,
-        BuildPanel, FloatText;
+        BuildPanel, EggPanel, MilkPanel, WoolPanel,
+        PancakePanel, PizzaPanel, ClothesPanel, FloatText;
     public RawImage AyamObj, SapiObj, DombaObj, AnjingObj, KucingObj;
     public Button TransporterBtn, AyamBtn, SapiBtn, DombaBtn, AnjingBtn, KucingBtn, BeruangObj, TikusObj,
         DEHLock, DEH, BakeryLock, Bakery,
         DairyLock, Dairy, CheeseLock, Cheese,
-        SpinneryLock, Spinnery, FabricLock, Fabric;
+        SpinneryLock, Spinnery, FabricLock, Fabric,
+        ChangePancake, ChangePizza, ChangeClothes,
+        PancakeLock, Pancake, PizzaLock, Pizza, 
+        BoutiqueLock, Boutique;
     Vector3 targetPosition;
     Random randomSpawn = new Random();
-    bool sudahNaikLevel = false; int LevelSapi = 0;
+    bool sudahNaikLevel = false, mauSpecial = false,
+        cekPancakeKeluar = false, cekPizzaKeluar = false, cekBajuKeluar = false;
+    int LevelSapi = 0;
     float timerKucing = 7f;
     public static int LevelPicked, TutorialRumput;
 
@@ -44,8 +50,8 @@ public class LevelGameplay : MonoBehaviour
     void Start()
     {
         sudahNaikLevel = false; TransporterMax = 5; TPDeliveryTime = 500;
-        Debug.Log("Cek Transporter berstatus: " + TransporterTextManager.cekTransporter);
         RevertAllIngredientsToZero();
+            SpecialIngredients(true, true, true, true);
         if(GameStatus.PickedLevel == 1){
             LevelMoney = 100; LevelWell = 5;
             LevelTlrKering = 0; LevelTelur = 0; LevelSusu = 0; TutorialRumput = 0;
@@ -69,7 +75,7 @@ public class LevelGameplay : MonoBehaviour
             tsgoal.Add(10); tsgoal.Add(10); tsgoal.Add(10);
             TestLevel(500, 5, 2); ApplyLevel(true, 5);
         }
-        CurrentLvlTxt.text = "Level: " + GameStatus.PickedLevel.ToString();
+        CurrentLvlTxt.text = "Level " + GameStatus.PickedLevel.ToString();
     }
     void TestLevel(int money, int well, int totalgoal){
         LevelMoney = money; LevelWell = well; cgoal = totalgoal;
@@ -89,6 +95,7 @@ public class LevelGameplay : MonoBehaviour
         LevelPancake = 0; LevelPizza = 0; LevelBaju = 0;
         TransporterMax = 5; WellMax = 5;
         CostWell = 20; TPDeliveryTime = 500;
+        mauSpecial = false;
         UpgradeTransporter = 1; UpgradeWell = 1;
     }
 
@@ -105,12 +112,32 @@ public class LevelGameplay : MonoBehaviour
             DEHLock.interactable = true; BakeryLock.interactable = true;
             DairyLock.interactable = true; CheeseLock.interactable = true;
             SpinneryLock.interactable = true; FabricLock.interactable = true;
+            PancakeLock.interactable = true; PizzaLock.interactable = true;
+            BoutiqueLock.interactable = true; EggPanel.SetActive(true);
+            MilkPanel.SetActive(true); WoolPanel.SetActive(true);
             DEH.gameObject.SetActive(false); DEH.interactable = false;
             Bakery.gameObject.SetActive(false); Bakery.interactable = false;
             Dairy.gameObject.SetActive(false); Dairy.interactable = false;
             Cheese.gameObject.SetActive(false); Cheese.interactable = false;
             Spinnery.gameObject.SetActive(false); Spinnery.interactable = false;
             Fabric.gameObject.SetActive(false); Fabric.interactable = false;
+            Pancake.gameObject.SetActive(false); Pancake.interactable = false;
+            Pizza.gameObject.SetActive(false); Pizza.interactable = false;
+            Boutique.gameObject.SetActive(false); Boutique.interactable = false;
+            PancakePanel.SetActive(false); PizzaPanel.SetActive(false);
+            ClothesPanel.SetActive(false);
+        }
+    }
+    void SpecialIngredients(bool keluarspecial, bool pancakeSpecial, bool pizzaSpecial, bool clothesSpecial){
+        if(keluarspecial == true){
+            mauSpecial = true;
+            if(pancakeSpecial == true){
+                cekPancakeKeluar = true;
+            } if(pizzaSpecial == true){
+                cekPizzaKeluar = true;
+            } if(pancakeSpecial == true){
+                cekBajuKeluar = true;
+            }
         }
     }
 
@@ -118,14 +145,19 @@ public class LevelGameplay : MonoBehaviour
     void Update()
     {
         PasarMoneyTxt.text = TransporterMoneyTxt.text = StorageMoneyTxt.text = MoneyTxt.text = "Uang: " + LevelMoney; 
-        WellTxt.text = "Sumur: " + LevelWell;
+        if(UpgradeWell != 5) {WellTxt.text = "Sumur: " + LevelWell; BtnWellTxt.text = "Isi Sumur";}
+            else {
+                if(ProduceFood.OnOffLeaf == true) {WellTxt.text = "Sumur ON"; BtnWellTxt.text = "Matikan";}
+                    else {WellTxt.text = "Sumur OFF"; BtnWellTxt.text = "Nyalakan";}
+                }
         cheat1000MoneyPlusAllMatsPlus10();
-        UpdateBahan(); 
+        UpdateBahan(); UpdateSpecial();
         if(timerKucing >= 0.0f) timerKucing -= Time.deltaTime;
         else {CheckingKucing(); timerKucing = 7f;}
         if(TransporterTextManager.cekTransporter == true) TransporterBtn.interactable = false;
         else TransporterBtn.interactable = true;
         //Cek kapan menang
+#region IF untuk kondisi Menang
         if(TutorialRumput >= targetgoal && LevelPicked == 1){
             HasilResult();
         }
@@ -138,19 +170,21 @@ public class LevelGameplay : MonoBehaviour
         if(LevelSapi >= targetgoal && LevelPicked == 4){
             HasilResult();
         }
+#endregion
         //Cek Uang di bagian Binatang
         BinatangButtons();
     }
 
     void cheat1000MoneyPlusAllMatsPlus10(){
         if(Input.GetKeyDown(KeyCode.UpArrow)){
-            LevelMoney += 1000;
+            LevelMoney += 10000;
         }
         if(Input.GetKeyDown(KeyCode.DownArrow)){
             LevelTelur = 10; LevelTlrKering = 10; LevelKue = 10;
             LevelSusu = 10; LevelButter = 10; LevelKeju = 10;
             LevelWol = 10; LevelBenang = 10; LevelKain = 10;
-            Debug.Log("Telur: " + LevelTelur);
+            LevelSirup = 10; LevelTepung = 10; LevelCat = 10;
+            LevelPancake = 10; LevelPizza = 10; LevelBaju = 10;
         }
     }
 
@@ -159,7 +193,24 @@ public class LevelGameplay : MonoBehaviour
         KueTxt.text = "Kue: " + LevelKue; SusuTxt.text = "Susu: " + LevelSusu;
         MentegaTxt.text = "Mentega: " + LevelButter; KejuTxt.text = "Keju: " + LevelKeju;
         WolTxt.text = "Wol: " + LevelWol; BenangTxt.text = "Benang: " + LevelBenang;
-        KainTxt.text = "Kain: " + LevelKain;
+        KainTxt.text = "Kain: " + LevelKain; SirupTxt.text = "Sirup: " + LevelSirup;
+        TepungTxt.text = "Tepung: " + LevelTepung; CatTxt.text = "Ember Cat: " + LevelCat;
+        PancakeTxt.text = "Pancake: " + LevelPancake; PizzaTxt.text = "Pizza: " + LevelPizza;
+        BajuTxt.text = "Baju: " + LevelBaju;
+    }
+    void UpdateSpecial(){
+        if(mauSpecial == true && cekPancakeKeluar == true){
+            if(LevelTelur >= 5) ChangePancake.gameObject.SetActive(true);
+                else ChangePancake.gameObject.SetActive(false);
+        }
+        if(mauSpecial == true && cekPizzaKeluar == true){            
+            if(LevelButter >= 5) ChangePizza.gameObject.SetActive(true);
+                else ChangePizza.gameObject.SetActive(false);
+        }
+        if(mauSpecial == true && cekBajuKeluar == true){
+            if(LevelKain >= 5) ChangeClothes.gameObject.SetActive(true);
+                else ChangeClothes.gameObject.SetActive(false);
+        }
     }
 
     void BinatangInteract(bool ayam, bool sapi, bool domba, bool anjing, bool kucing){
@@ -213,6 +264,9 @@ public class LevelGameplay : MonoBehaviour
         CheeseLock.onClick.AddListener(OpenCheeseFactory);
         SpinneryLock.onClick.AddListener(OpenSpinnery);
         FabricLock.onClick.AddListener(OpenFabricShop);
+        PancakeLock.onClick.AddListener(OpenPancakeShop);
+        PizzaLock.onClick.AddListener(OpenPizzaShop);
+        BoutiqueLock.onClick.AddListener(OpenBoutique);
         //Listener Bangunan yang sudah dibuat
         DEH.onClick.AddListener(CreateDE);
         DEH.onClick.AddListener(NotifyDEHPressed);
@@ -221,6 +275,9 @@ public class LevelGameplay : MonoBehaviour
         Cheese.onClick.AddListener(CreateCheese);
         Spinnery.onClick.AddListener(CreateYarn);
         Fabric.onClick.AddListener(CreateFabric);
+        Pancake.onClick.AddListener(CreatePancake);
+        Pizza.onClick.AddListener(CreatePizza);
+        Boutique.onClick.AddListener(CreateClothes);
     }
 #region Handle the onClick event
     #region Part 1: Spawn animals
@@ -279,10 +336,10 @@ public class LevelGameplay : MonoBehaviour
     }
     void NotifyDEHPressed(){
         FloatTxt.text = "+1 Telur Kering";
-        Vector3 targetPosition = new Vector3(DEHLock.transform.position.x, DEH.transform.position.y, 0);
+        Vector3 targetPosition = new Vector3(DEHLock.transform.position.x-115, DEH.transform.position.y-150, 0);
         Debug.Log(DEH.transform.position.x + " & " + DEH.transform.position.y);
         var floatingtxt = Instantiate(FloatText,targetPosition,Quaternion.identity);
-        floatingtxt.transform.SetParent(BuildPanel.transform, false);
+        floatingtxt.transform.SetParent(EggPanel.transform, false);
     }
     void OpenBakery(){
         if(LevelMoney >= 400){
@@ -324,37 +381,71 @@ public class LevelGameplay : MonoBehaviour
             Fabric.interactable = true; LevelMoney -= 2000;
         }
     }
+    void OpenPancakeShop(){
+        if(LevelMoney >= 550){
+            PancakeLock.interactable = false;
+            PancakeLock.gameObject.SetActive(false);
+            Pancake.gameObject.SetActive(true);
+            Pancake.interactable = true; LevelMoney -= 550;
+        }
+    }
+    void OpenPizzaShop(){
+        if(LevelMoney >= 1250){
+            PizzaLock.interactable = false;
+            PizzaLock.gameObject.SetActive(false);
+            Pizza.gameObject.SetActive(true);
+            Pizza.interactable = true; LevelMoney -= 1250;
+        }
+    }
+    void OpenBoutique(){
+        if(LevelMoney >= 4250){
+            BoutiqueLock.interactable = false;
+            BoutiqueLock.gameObject.SetActive(false);
+            Boutique.gameObject.SetActive(true);
+            Boutique.interactable = true; LevelMoney -= 4250;
+        }
+    }
     #endregion
     #region Part 3: Products
     void CreateDE(){
         if(LevelTelur != 0){
-        LevelTlrKering += 1;
-        LevelTelur -= 1;}
+        LevelTlrKering += 1; LevelTelur -= 1;}
     }
     void CreateCake(){
         if(LevelTlrKering != 0){
-        LevelKue += 1;
-        LevelTlrKering -= 1;}
+        LevelKue += 1; LevelTlrKering -= 1;}
     }
     void CreateButter(){
         if(LevelSusu != 0){
-        LevelTlrKering += 1;
-        LevelTelur -= 1;}
+        LevelTlrKering += 1; LevelTelur -= 1;}
     }
     void CreateCheese(){
         if(LevelButter != 0){
-        LevelKeju += 1;
-        LevelButter -= 1;}
+        LevelKeju += 1; LevelButter -= 1;}
     }
     void CreateYarn(){
         if(LevelWol != 0){
-        LevelBenang += 1;
-        LevelWol -= 1;}
+        LevelBenang += 1; LevelWol -= 1;}
     }
     void CreateFabric(){
         if(LevelBenang != 0){
-        LevelKain += 1;
-        LevelBenang -= 1;}
+        LevelKain += 1; LevelBenang -= 1;}
+    }
+    void CreatePancake(){
+        if(LevelTelur >= 1 && LevelSirup != 0){
+            LevelPancake += 1; LevelTelur -= 2; LevelSirup --;
+        }
+    }
+    void CreatePizza(){
+            Debug.Log("Berhasil masuk untuk buat Pizza!");
+        if(LevelButter >= 2 && LevelTepung >= 2){
+            LevelPizza ++; LevelButter -= 3; LevelTepung -= 3;
+        }
+    }
+    void CreateClothes(){
+        if(LevelKain >= 3 && LevelCat >= 4){
+            LevelBaju ++; LevelKain -= 4; LevelCat -=5;
+        }
     }
     #endregion
 #endregion

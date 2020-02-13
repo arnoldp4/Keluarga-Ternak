@@ -11,11 +11,11 @@ public class ProduceFood : MonoBehaviour
     public Button telurBtn, LeafBtn, susuBtn, wolBtn, BeruangBtn, TikusBtn;
 
     //Bool buat matikan Coroutine
-    public static bool LeafDead, LeafDeadManual;
-    float waktuMusuhSpawn = 30f;
+    public static bool LeafDeadManual, OnOffLeaf;
+    float waktuMusuhSpawn = 30f; float waktuLeafHancur = 2f;
     //Array buat posisi
-    int[,] PosisiSpawn = new int[,] {{-155, -125, -105, -75, -45, -15, 15, 45, 75, 105, 125, 155}, 
-        {-55, -45, -35, -25, -15, -5, 5, 15, 25, 35, 45, 55}};
+    int[,] PosisiSpawn = new int[,] {{-155, -130, -115, -105, -75, -45, -15, 15, 45, 75, 105, 115, 130, 155, 170, 190}, 
+        {-75, -65, -55, -45, -35, -25, -15, -5, 5, 15, 25, 35, 45, 55, 65, 75}};
     // Start is called before the first frame update
     void Start()
     {
@@ -38,43 +38,57 @@ public class ProduceFood : MonoBehaviour
         if (GameObject.Find("MoleBtn(Clone)")){
             MoleActivity();
         }
-        if(LevelGameplay.LevelWell!=0){
-            WarningPanel.SetActive(false);
-            SpawnGrass();
-        }
-        else{
-            StartCoroutine(warningSumurHabis());
-            StopCoroutine(warningSumurHabis());
+        if(LevelGameplay.UpgradeWell!=5){
+            if(LevelGameplay.LevelWell!=0){
+                WarningPanel.SetActive(false);
+                SpawnGrass();
+            }
+            else{
+                StartCoroutine(warningSumurHabis());
+                StopCoroutine(warningSumurHabis());
+            }
+        } else{
+            WarningPanel.SetActive(false); waktuLeafHancur = 1.5f;
+            int RNGDoLeaf = Random.Range(0, 200);
+            if(RNGDoLeaf == 104){
+                if(OnOffLeaf == true) SpawnGrass();}
         }
     }
 
     void SpawnGrass() {
-        if(Input.GetMouseButtonDown(0) && LeafDeadManual == false)
-        {
-            MP=Input.mousePosition;
-            //Convert the targetPosition according to Mouse Position 
-            targetPosition = new Vector3(MP.x-405, MP.y-100, 0);
-            Debug.Log("Ditekan");
-            float cekx = targetPosition.x - plain.transform.position.x,
-                ceky = targetPosition.y - plain.transform.position.y;
-            if(cekx >= -580 && cekx <= -230 && ceky <= 80 && ceky >= -60)
+        if(LevelGameplay.UpgradeWell != 5){
+            if(Input.GetMouseButtonDown(0) && LeafDeadManual == false)
             {
-                LevelGameplay.LevelWell-=1; var grass = Instantiate(grassObj,targetPosition,Quaternion.identity);
-                grass.transform.SetParent(plain.transform, false);
-                if(LevelGameplay.LevelPicked == 1){
-                    LevelGameplay.TutorialRumput += 1;
+                MP=Input.mousePosition;
+                //Convert the targetPosition according to Mouse Position 
+                targetPosition = new Vector3(MP.x-405, MP.y-100, 0);
+                Debug.Log("Ditekan");
+                float cekx = targetPosition.x - plain.transform.position.x,
+                    ceky = targetPosition.y - plain.transform.position.y;
+                if(cekx >= -580 && cekx <= -230 && ceky <= 80 && ceky >= -60)
+                {
+                    LevelGameplay.LevelWell-=1; var grass = Instantiate(grassObj,targetPosition,Quaternion.identity);
+                    grass.transform.SetParent(plain.transform, false);
+                    if(LevelGameplay.LevelPicked == 1){
+                        LevelGameplay.TutorialRumput += 1;
+                    }
                 }
             }
+        } else {
+            int x = Random.Range(0, 12); int y = Random.Range(0, 12);
+            targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
+            var rumput = Instantiate(grassObj,targetPosition,Quaternion.identity);
+            rumput.transform.SetParent(plain.transform, false);
+            LevelGameplay.LevelMoney -= 7;
         }
     }
 
     void CheckingGO(){
         if (LeafDeadManual == false) TurnRed();
         else TurnWhite();
-        if(GameObject.Find("Ayam(Clone)") || GameObject.Find("Sapi(Clone)") || GameObject.Find("Domba(Clone)")
+        if((GameObject.Find("Ayam(Clone)") || GameObject.Find("Sapi(Clone)") || GameObject.Find("Domba(Clone)"))
             && GameObject.Find("Leaf(Clone)")){
             StartCoroutine ( desObj() );
-            StopCoroutine ( desObj() );
         }
     }
     void BearActivity(){
@@ -122,8 +136,8 @@ public class ProduceFood : MonoBehaviour
 #region Spawn Bahan Utama & Musuh
     void SpawnTelur()
     {
-        int x = Random.Range(0, 9);
-        int y = Random.Range(0, 9);
+        int x = Random.Range(0, 12);
+        int y = Random.Range(0, 12);
         targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         var telur = Instantiate(telurBtn,targetPosition,Quaternion.identity);
         telur.transform.SetParent(plain.transform, false);
@@ -162,7 +176,7 @@ public class ProduceFood : MonoBehaviour
         yield return new WaitForSeconds (3);
     }
     IEnumerator desObj(){
-        yield return new WaitForSeconds (5);
+        yield return new WaitForSeconds (waktuLeafHancur);
         int RNGWhoGetFirst = Random.Range(0, 3);
         if(GameObject.Find("Ayam(Clone)") && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 0){
             SpawnTelur();

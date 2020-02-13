@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameStatus : MonoBehaviour
 {
     public static int PickedLevel; //buat ganti level
+    string NamaHubLevel;
     
     //Button buat buka tutup scene/panel
     public void LoadScene(string SceneName){
@@ -24,8 +25,11 @@ public class GameStatus : MonoBehaviour
     public void resume(){
         Time.timeScale = 1;
     }
-    public void RestartLevel(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    public void AmbilHubLevel(){
+        NamaHubLevel = SceneManager.GetActiveScene().name;
+    }
+    public void RestartHubLevel(){
+        SceneManager.LoadScene(NamaHubLevel);
     }
 
     //Button buat ganti level selanjutnya
@@ -38,14 +42,15 @@ public class GameStatus : MonoBehaviour
 
     //Button buat in-game
     public void MaxChargeWell(){
-        if(LevelGameplay.LevelWell == 0 && LevelGameplay.LevelMoney >= 7){
-            if(LevelGameplay.UpgradeWell != 5){
+        if(LevelGameplay.UpgradeWell != 5){
+            if(LevelGameplay.LevelWell == 0 && LevelGameplay.LevelMoney >= 7){
                 LevelGameplay.LevelWell = LevelGameplay.WellMax;
                 LevelGameplay.LevelMoney -= LevelGameplay.CostWell;
-            } else {
-                
+            } 
+        } else {
+                if(ProduceFood.OnOffLeaf == false) ProduceFood.OnOffLeaf = true;
+                    else ProduceFood.OnOffLeaf = false;
             }
-        }
     }
 
     public void ChangeLeaf(){
