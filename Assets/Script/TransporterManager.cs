@@ -30,7 +30,8 @@ public class TransporterManager : MonoBehaviour
     public void SellEgg(){
         cekBatasTransporter();
         if(LevelGameplay.LevelTelur != 0 && jualtelur <= LevelGameplay.LevelTelur && ctrJual == false){
-            totaljual += 20;
+            if(GameStatus.PickedEvent == "Hari Paskah") totaljual += 60;
+                else totaljual += 20;
             jualtelur += 1;
         }
     }

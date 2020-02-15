@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameStatus : MonoBehaviour
 {
-    public static string PickedHubWorld; //buat tahu Hub World mana yang dipilih
+    public static string PickedHubWorld, PickedEvent; //buat tahu Hub World mana yang dipilih
     public static int PickedLevel; //buat ganti level
     string NamaHubLevel;
     
@@ -14,6 +14,9 @@ public class GameStatus : MonoBehaviour
     public void LoadScene(string SceneName){
         PickedHubWorld = SceneName;
         SceneManager.LoadScene(SceneName);
+    }
+    public void BuatEvent(string EventName){
+        PickedEvent = EventName;
     }
     public void OpenPanel(GameObject PanelName){
         PanelName.SetActive(true);
@@ -64,7 +67,7 @@ public class GameStatus : MonoBehaviour
     //Button buat in-game
     public void MaxChargeWell(){
         if(LevelGameplay.UpgradeWell != 5){
-            if(LevelGameplay.LevelWell == 0 && LevelGameplay.LevelMoney >= 7){
+            if(LevelGameplay.LevelWell == 0 && LevelGameplay.LevelMoney >= LevelGameplay.CostWell){
                 LevelGameplay.LevelWell = LevelGameplay.WellMax;
                 LevelGameplay.LevelMoney -= LevelGameplay.CostWell;
             } 

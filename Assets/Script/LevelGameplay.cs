@@ -23,9 +23,7 @@ public class LevelGameplay : MonoBehaviour
     public static bool CureProcess;
     
     //Variable buat satu level
-    string namagoal; int targetgoal; //Goal yang berlaku 1 goal saja
-    List<string> goallist = new List<string>(); //Goal yang lebih dari 1
-    List<int> tsgoal = new List<int>(); int cgoal = 0; 
+    string namagoal, kondisiEvent; int targetgoal; //Goal yang berlaku 1 goal saja
 
     //Variable buat selesai level
     public GameObject GameCanvas, ResultCanvas,
@@ -64,19 +62,23 @@ public class LevelGameplay : MonoBehaviour
         }
         else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 2){
             BuatLevel(300, 5, 5, "Telur");
-            ApplyLevel(false, 2);
+            ApplyLevel(false, false, false, false, false, false, false, 2);
         }
         else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 3){
             BuatLevel(200, 5, 2, "Telur Kering");
-            ApplyLevel(true, 3);
+            ApplyLevel(true, true, false, false, false, false, false, 3);
         }   
         else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 4){
-            BuatLevel(100, 5, 1, "Sapi");
-            ApplyLevel(true, 4);
+            BuatLevel(300, 5, 20, "Telur");
+            ApplyLevel(true, true, false, false, false, false, false, 2);
+        }   
+        else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 5){
+            BuatLevel(500, 5, 2500, "Uang");
+            ApplyLevel(true, true, false, false, false, false, false, 2);
         }
         else if(GameStatus.PickedHubWorld == "Level7" && GameStatus.PickedLevel == 5){
-            BuatLevel(100, 5, 50000, "Uang");
-            ApplyLevel(true, 35);
+            BuatLevel(10000, 5, 50000, "Uang");
+            ApplyLevel(true, true, true, true, true, true, true, 35);
         }
         CurrentLvlTxt.text = "Level " + GameStatus.PickedLevel.ToString();
     }
@@ -110,15 +112,16 @@ public class LevelGameplay : MonoBehaviour
         GoalTxt.text = "Goals: \r\n";
         GoalTxt.text = GoalTxt.text + namagoal + ": " + targetgoal;
     }
-    void ApplyLevel(bool bpanel, int lvlpick){
+    void ApplyLevel(bool bpanel, bool ePanel, bool mPanel, 
+        bool wPanel, bool paPanel, bool pzPanel, bool clPanel, int lvlpick){
         BuildPanel.SetActive(bpanel); LevelPicked = lvlpick;
         if(bpanel == true){
             DEHLock.interactable = true; BakeryLock.interactable = true;
             DairyLock.interactable = true; CheeseLock.interactable = true;
             SpinneryLock.interactable = true; FabricLock.interactable = true;
             PancakeLock.interactable = true; PizzaLock.interactable = true;
-            BoutiqueLock.interactable = true; EggPanel.SetActive(true);
-            MilkPanel.SetActive(true); WoolPanel.SetActive(true);
+            BoutiqueLock.interactable = true; EggPanel.SetActive(ePanel);
+            MilkPanel.SetActive(mPanel); WoolPanel.SetActive(wPanel);
             DEH.gameObject.SetActive(false); DEH.interactable = false;
             Bakery.gameObject.SetActive(false); Bakery.interactable = false;
             Dairy.gameObject.SetActive(false); Dairy.interactable = false;
@@ -128,8 +131,8 @@ public class LevelGameplay : MonoBehaviour
             Pancake.gameObject.SetActive(false); Pancake.interactable = false;
             Pizza.gameObject.SetActive(false); Pizza.interactable = false;
             Boutique.gameObject.SetActive(false); Boutique.interactable = false;
-            PancakePanel.SetActive(false); PizzaPanel.SetActive(false);
-            ClothesPanel.SetActive(false);
+            PancakePanel.SetActive(paPanel); PizzaPanel.SetActive(pzPanel);
+            ClothesPanel.SetActive(clPanel);
         }
     }
     void SpecialIngredients(bool keluarspecial, bool pancakeSpecial, bool pizzaSpecial, bool clothesSpecial){
@@ -162,18 +165,11 @@ public class LevelGameplay : MonoBehaviour
         else TransporterBtn.interactable = true;
         //Cek kapan menang
 #region IF untuk kondisi Menang
-        if(TutorialRumput >= targetgoal && LevelPicked == 1){
-            HasilResult();
-        }
-        if(LevelTelur >= targetgoal && LevelPicked == 2){
-            HasilResult();
-        }
-        if(LevelTlrKering >= targetgoal && LevelPicked == 3){
-            HasilResult();
-        }
-        if(LevelSapi >= targetgoal && LevelPicked == 4){
-            HasilResult();
-        }
+        if(TutorialRumput >= targetgoal && LevelPicked == 1) HasilResult();
+        else if(LevelTelur >= targetgoal && LevelPicked == 2) HasilResult();
+        else if(LevelTlrKering >= targetgoal && LevelPicked == 3) HasilResult();
+        else if(LevelTelur >= targetgoal && LevelPicked == 4) HasilResult();
+        else if(LevelMoney >= targetgoal && LevelPicked == 5) HasilResult();
 #endregion
         //Cek Uang di bagian Binatang
         BinatangButtons();

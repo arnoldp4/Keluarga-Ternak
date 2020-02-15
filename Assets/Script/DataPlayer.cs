@@ -7,7 +7,7 @@ public class DataPlayer : MonoBehaviour
 {
     //Test SAVE LOAD JSON
     public Text namaTxt, User1NameTxt, User1LevelTxt, CurrentUserTxt,
-        User2NameTxt, User2LevelTxt;
+        User2NameTxt, User2LevelTxt, WelcomeTxt;
     public static bool CreatedUser1, CreatedUser2;
     public Button User1Btn, CreatedUser1Btn, User2Btn, CreatedUser2Btn,
         DeleteUser1Btn, DeleteUser2Btn;
@@ -18,10 +18,6 @@ public class DataPlayer : MonoBehaviour
             else CreatedUser1 = false;
         if(PlayerPrefs.GetString("NamaPlayer2") != "NULL") CreatedUser2 = true;
             else CreatedUser2 = false;
-        if(PlayerPrefs.GetString("CurrentUser") == "User1")
-            CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer1");
-        else if (PlayerPrefs.GetString("CurrentUser") == "User2")
-            CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer2");
         Debug.Log("User 1: " + CreatedUser1 + " & " + CreatedUser2);
     }
 
@@ -91,5 +87,11 @@ public class DataPlayer : MonoBehaviour
             CreatedUser2Btn.gameObject.SetActive(false);
             DeleteUser2Btn.gameObject.SetActive(false);
         }
+        if(PlayerPrefs.GetString("CurrentUser") == "User1")
+            {CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer1");
+            WelcomeTxt.text = "Welcome, " + PlayerPrefs.GetString("NamaPlayer1");}
+        else if (PlayerPrefs.GetString("CurrentUser") == "User2")
+            {CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer2");
+            WelcomeTxt.text = "Welcome, " + PlayerPrefs.GetString("NamaPlayer2");}
     }
 }

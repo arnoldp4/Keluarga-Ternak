@@ -180,7 +180,9 @@ public class ProduceFood : MonoBehaviour
         yield return new WaitForSeconds (waktuLeafHancur);
         int RNGWhoGetFirst = Random.Range(0, 4);
         if(GameObject.Find("Ayam(Clone)") && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 0){
-            SpawnTelur();
+            if(GameStatus.PickedEvent == "Musim Ayam"){
+                SpawnTelur(); SpawnTelur();
+            } else SpawnTelur();
         } else if(GameObject.Find("Sapi(Clone)") && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 1){
             SpawnSusu();
         } else if(GameObject.Find("Domba(Clone)") && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 2){
