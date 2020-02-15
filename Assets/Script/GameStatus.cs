@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameStatus : MonoBehaviour
 {
+    public static string PickedHubWorld; //buat tahu Hub World mana yang dipilih
     public static int PickedLevel; //buat ganti level
     string NamaHubLevel;
     
     //Button buat buka tutup scene/panel
     public void LoadScene(string SceneName){
+        PickedHubWorld = SceneName;
         SceneManager.LoadScene(SceneName);
     }
     public void OpenPanel(GameObject PanelName){
@@ -37,7 +39,26 @@ public class GameStatus : MonoBehaviour
         PickedLevel = LevelNumber;
     }
     public void NextLevelPicked(){
-        PickedLevel += 1;
+        if(PickedHubWorld == "Level1" && PickedLevel == 5){
+            PickedHubWorld = "Level2"; PickedLevel = 1;
+        } else if(PickedHubWorld == "Level2" && PickedLevel == 5){
+            PickedHubWorld = "Level3"; PickedLevel = 1;
+        } else if(PickedHubWorld == "Level3" && PickedLevel == 5){
+            PickedHubWorld = "Level4"; PickedLevel = 1;
+        } else if(PickedHubWorld == "Level4" && PickedLevel == 5){
+            PickedHubWorld = "Level5"; PickedLevel = 1;
+        } else if(PickedHubWorld == "Level5" && PickedLevel == 5){
+            PickedHubWorld = "Level6"; PickedLevel = 1;
+        } else if(PickedHubWorld == "Level6" && PickedLevel == 5){
+            PickedHubWorld = "Level7"; PickedLevel = 1;
+        } else {
+            PickedLevel += 1;
+        }
+    }
+    public void CurePress(){
+        if(LevelGameplay.LevelMoney >= 125){
+            LevelGameplay.CureProcess = true;
+        }
     }
 
     //Button buat in-game

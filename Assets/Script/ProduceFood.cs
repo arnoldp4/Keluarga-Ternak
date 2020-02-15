@@ -86,7 +86,8 @@ public class ProduceFood : MonoBehaviour
     void CheckingGO(){
         if (LeafDeadManual == false) TurnRed();
         else TurnWhite();
-        if((GameObject.Find("Ayam(Clone)") || GameObject.Find("Sapi(Clone)") || GameObject.Find("Domba(Clone)"))
+        if((GameObject.Find("Ayam(Clone)") || GameObject.Find("Sapi(Clone)") || GameObject.Find("Domba(Clone)")
+            || GameObject.Find("AyamSakit(Clone)") || GameObject.Find("SapiSakit(Clone)") || GameObject.Find("DombaSakit(Clone)"))
             && GameObject.Find("Leaf(Clone)")){
             StartCoroutine ( desObj() );
         }
@@ -177,13 +178,16 @@ public class ProduceFood : MonoBehaviour
     }
     IEnumerator desObj(){
         yield return new WaitForSeconds (waktuLeafHancur);
-        int RNGWhoGetFirst = Random.Range(0, 3);
+        int RNGWhoGetFirst = Random.Range(0, 4);
         if(GameObject.Find("Ayam(Clone)") && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 0){
             SpawnTelur();
         } else if(GameObject.Find("Sapi(Clone)") && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 1){
             SpawnSusu();
         } else if(GameObject.Find("Domba(Clone)") && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 2){
             SpawnWol();
+        } if((GameObject.Find("Ayam(Clone)") || GameObject.Find("SapiSakit(Clone)") ||
+            GameObject.Find("DombaSakit(Clone)")) && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 3){
+            Destroy(GameObject.Find("Leaf(Clone)"));
         }
         Destroy(GameObject.Find("Leaf(Clone)"));
     }

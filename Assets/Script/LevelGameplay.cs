@@ -20,6 +20,7 @@ public class LevelGameplay : MonoBehaviour
         SusuTxt, MentegaTxt, KejuTxt,
         WolTxt, BenangTxt, KainTxt, 
         SirupTxt, PancakeTxt, TepungTxt, PizzaTxt, CatTxt, BajuTxt;
+    public static bool CureProcess;
     
     //Variable buat satu level
     string namagoal; int targetgoal; //Goal yang berlaku 1 goal saja
@@ -30,14 +31,15 @@ public class LevelGameplay : MonoBehaviour
     public GameObject GameCanvas, ResultCanvas,
         BuildPanel, EggPanel, MilkPanel, WoolPanel,
         PancakePanel, PizzaPanel, ClothesPanel, FloatText;
-    public RawImage AyamObj, SapiObj, DombaObj, AnjingObj, KucingObj;
+    public RawImage AyamObj, SapiObj, DombaObj, AnjingObj, KucingObj,
+        AyamSakitObj, SapiSakitObj, DombaSakitObj;
     public Button TransporterBtn, AyamBtn, SapiBtn, DombaBtn, AnjingBtn, KucingBtn, BeruangObj, TikusObj,
         DEHLock, DEH, BakeryLock, Bakery,
         DairyLock, Dairy, CheeseLock, Cheese,
         SpinneryLock, Spinnery, FabricLock, Fabric,
         ChangePancake, ChangePizza, ChangeClothes,
         PancakeLock, Pancake, PizzaLock, Pizza, 
-        BoutiqueLock, Boutique;
+        BoutiqueLock, Boutique, SembuhBtn;
     Vector3 targetPosition;
     Random randomSpawn = new Random();
     bool sudahNaikLevel = false, mauSpecial = false,
@@ -50,42 +52,44 @@ public class LevelGameplay : MonoBehaviour
     void Start()
     {
         sudahNaikLevel = false; TransporterMax = 5; TPDeliveryTime = 500;
+        ResultCanvas.SetActive(false);
         RevertAllIngredientsToZero();
             SpecialIngredients(true, true, true, true);
-        if(GameStatus.PickedLevel == 1){
+        if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 1){
             LevelMoney = 100; LevelWell = 5;
-            LevelTlrKering = 0; LevelTelur = 0; LevelSusu = 0; TutorialRumput = 0;
             targetgoal = 10; namagoal = "Rumput";
             BuildPanel.SetActive(false); LevelPicked = 1;
+            GoalTxt.text = "Goals: \r\n";
+            GoalTxt.text = GoalTxt.text + namagoal + ": " + targetgoal;
         }
-        else if(GameStatus.PickedLevel == 2){
+        else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 2){
             BuatLevel(300, 5, 5, "Telur");
             ApplyLevel(false, 2);
         }
-        else if(GameStatus.PickedLevel == 3){
+        else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 3){
             BuatLevel(200, 5, 2, "Telur Kering");
             ApplyLevel(true, 3);
         }   
-        else if(GameStatus.PickedLevel == 4){
+        else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 4){
             BuatLevel(100, 5, 1, "Sapi");
             ApplyLevel(true, 4);
         }
-        else if(GameStatus.PickedLevel == 5){
-            goallist.Add("Kue"); goallist.Add("Keju"); goallist.Add("Kain");
-            tsgoal.Add(10); tsgoal.Add(10); tsgoal.Add(10);
-            TestLevel(500, 5, 2); ApplyLevel(true, 5);
+        else if(GameStatus.PickedHubWorld == "Level7" && GameStatus.PickedLevel == 5){
+            BuatLevel(100, 5, 50000, "Uang");
+            ApplyLevel(true, 35);
         }
         CurrentLvlTxt.text = "Level " + GameStatus.PickedLevel.ToString();
     }
-    void TestLevel(int money, int well, int totalgoal){
-        LevelMoney = money; LevelWell = well; cgoal = totalgoal;
-        RevertAllIngredientsToZero();
-        MoneyTxt.text = "Uang: " + LevelMoney; WellTxt.text = "Sumur: " + LevelWell;
-        GoalTxt.text = "Goals: \r\n";
-        for(int i = 0; i < totalgoal; i++){
-            GoalTxt.text = GoalTxt.text + goallist[i] + ": " + tsgoal[i] + " \r\n";
-        }
-    }
+
+    // void TestLevel(int money, int well, int totalgoal){
+    //     LevelMoney = money; LevelWell = well; cgoal = totalgoal;
+    //     RevertAllIngredientsToZero();
+    //     MoneyTxt.text = "Uang: " + LevelMoney; WellTxt.text = "Sumur: " + LevelWell;
+    //     GoalTxt.text = "Goals: \r\n";
+    //     for(int i = 0; i < totalgoal; i++){
+    //         GoalTxt.text = GoalTxt.text + goallist[i] + ": " + tsgoal[i] + " \r\n";
+    //     }
+    // }
 
     void RevertAllIngredientsToZero(){
         LevelTelur = 0; LevelTlrKering = 0; LevelKue = 0;
@@ -95,7 +99,7 @@ public class LevelGameplay : MonoBehaviour
         LevelPancake = 0; LevelPizza = 0; LevelBaju = 0;
         TransporterMax = 5; WellMax = 5;
         CostWell = 20; TPDeliveryTime = 500;
-        mauSpecial = false;
+        mauSpecial = false; CureProcess = false;
         UpgradeTransporter = 1; UpgradeWell = 1;
     }
 
@@ -151,7 +155,7 @@ public class LevelGameplay : MonoBehaviour
                     else {WellTxt.text = "Sumur OFF"; BtnWellTxt.text = "Nyalakan";}
                 }
         cheat1000MoneyPlusAllMatsPlus10();
-        UpdateBahan(); UpdateSpecial();
+        UpdateBahan(); UpdateSpecial(); Cure();
         if(timerKucing >= 0.0f) timerKucing -= Time.deltaTime;
         else {CheckingKucing(); timerKucing = 7f;}
         if(TransporterTextManager.cekTransporter == true) TransporterBtn.interactable = false;
@@ -248,6 +252,22 @@ public class LevelGameplay : MonoBehaviour
         PlayerScores.PlayerLevel += 1;
         sudahNaikLevel = true;}
     }
+    void Cure(){
+        if(GameObject.Find("AyamSakit(Clone)") || GameObject.Find("SapiSakit(Clone)") || GameObject.Find("DombaSakit(Clone)")){
+            SembuhBtn.interactable = true;
+            if(CureProcess == true){
+                if(GameObject.Find("AyamSakit(Clone)")){
+                    SpawnAyam(); Destroy(GameObject.Find("AyamSakit(Clone)"));
+                } else if(GameObject.Find("SapiSakit(Clone)")){
+                    SpawnSapi(); Destroy(GameObject.Find("SapiSakit(Clone)"));
+                } else if(GameObject.Find("DombaSakit(Clone)")){
+                    SpawnDomba(); Destroy(GameObject.Find("DombaSakit(Clone)"));
+                }
+                CureProcess = false; LevelMoney -= 125;
+            }
+        } else SembuhBtn.interactable = false;
+        
+    }
 
     void Awake()
     {
@@ -286,26 +306,59 @@ public class LevelGameplay : MonoBehaviour
         int x = Random.Range(-150, 150);
         int y = Random.Range(-50, 50);
         targetPosition = new Vector3(x, y, 0);
-        var ayam = Instantiate(AyamObj,targetPosition,Quaternion.identity);
-        ayam.transform.SetParent(GameCanvas.transform, false);
-        LevelMoney -= 100;
+        if(CureProcess == false){
+            int RNGSakit = Random.Range(0, 50);
+            if(RNGSakit >= 25){
+                var ayam = Instantiate(AyamSakitObj,targetPosition,Quaternion.identity);
+                ayam.transform.SetParent(GameCanvas.transform, false);
+            } else {
+                var ayam = Instantiate(AyamObj,targetPosition,Quaternion.identity);
+                ayam.transform.SetParent(GameCanvas.transform, false);
+            }
+            LevelMoney -= 100;
+        } else {
+                var ayam = Instantiate(AyamObj,targetPosition,Quaternion.identity);
+                ayam.transform.SetParent(GameCanvas.transform, false);
+        }
     }
     void SpawnSapi(){
         int x = Random.Range(-130, 130);
         int y = Random.Range(-50, 50);
         targetPosition = new Vector3(x, y, 0);
-        var sapi = Instantiate(SapiObj,targetPosition,Quaternion.identity);
-        sapi.transform.SetParent(GameCanvas.transform, false);
-        LevelMoney -= 500;
-        LevelSapi += 1;
+        if(CureProcess == false){
+            int RNGSakit = Random.Range(0, 50);
+            if(RNGSakit >= 25){
+                var sapi = Instantiate(SapiSakitObj,targetPosition,Quaternion.identity);
+                sapi.transform.SetParent(GameCanvas.transform, false);
+            } else {
+                var sapi = Instantiate(SapiObj,targetPosition,Quaternion.identity);
+                sapi.transform.SetParent(GameCanvas.transform, false);
+            }
+            LevelMoney -= 500;
+            LevelSapi += 1;
+        } else {
+            var sapi = Instantiate(SapiObj,targetPosition,Quaternion.identity);
+            sapi.transform.SetParent(GameCanvas.transform, false);
+        }
     }
     void SpawnDomba(){
         int x = Random.Range(-130, 130);
         int y = Random.Range(-50, 50);
         targetPosition = new Vector3(x, y, 0);
-        var sapi = Instantiate(DombaObj,targetPosition,Quaternion.identity);
-        sapi.transform.SetParent(GameCanvas.transform, false);
-        LevelMoney -= 1000;
+        if(CureProcess == false){
+            int RNGSakit = Random.Range(0, 50);
+            if(RNGSakit >= 25){
+                var domba = Instantiate(DombaSakitObj,targetPosition,Quaternion.identity);
+                domba.transform.SetParent(GameCanvas.transform, false);
+            } else {
+                var domba = Instantiate(DombaObj,targetPosition,Quaternion.identity);
+                domba.transform.SetParent(GameCanvas.transform, false);
+            }
+            LevelMoney -= 1000;
+        } else {
+            var domba = Instantiate(DombaObj,targetPosition,Quaternion.identity);
+            domba.transform.SetParent(GameCanvas.transform, false);
+        }
     }
     void SpawnAnjing(){
         int x = Random.Range(-130, 130);
@@ -432,18 +485,18 @@ public class LevelGameplay : MonoBehaviour
         LevelKain += 1; LevelBenang -= 1;}
     }
     void CreatePancake(){
-        if(LevelTelur >= 1 && LevelSirup != 0){
+        if(LevelTelur >= 2 && LevelSirup != 0){
             LevelPancake += 1; LevelTelur -= 2; LevelSirup --;
         }
     }
     void CreatePizza(){
             Debug.Log("Berhasil masuk untuk buat Pizza!");
-        if(LevelButter >= 2 && LevelTepung >= 2){
+        if(LevelButter >= 3 && LevelTepung >= 3){
             LevelPizza ++; LevelButter -= 3; LevelTepung -= 3;
         }
     }
     void CreateClothes(){
-        if(LevelKain >= 3 && LevelCat >= 4){
+        if(LevelKain >= 4 && LevelCat >= 5){
             LevelBaju ++; LevelKain -= 4; LevelCat -=5;
         }
     }

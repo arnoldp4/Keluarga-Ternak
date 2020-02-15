@@ -18,7 +18,6 @@ public class PlayerScores : MonoBehaviour
     private System.Random rng = new System.Random();
     public static int PlayerScore, PlayerLevel;
     public static string PlayerName;
-    //Test GetUsers
     
 
     // Start is called before the first frame update
