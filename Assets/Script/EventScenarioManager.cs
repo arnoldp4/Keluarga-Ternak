@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class EventScenarioManager : MonoBehaviour
 {
     string tangkapEvent; int ctrskenario;
-    public GameObject MCLama, KakekLama,
-        MusimAyamPanel, EasterEgg;
+    public GameObject MCLama, KakekLama, MCSekarangTernak, KakekSekarang,
+        MusimAyamPanel, EasterEgg, Imlek;
     public Text SkenarioTxt;
     // Start is called before the first frame update
     void Start()
@@ -20,42 +20,44 @@ public class EventScenarioManager : MonoBehaviour
             MusimAyamPanel.SetActive(true);
             if(ctrskenario == 0){
                 SkenarioTxt.text = "WAAAHHHH!! KAKEK, LIAT! LIAT!! \n\r Kok ayam yang ini bertelur banyak sekali, kek?!";
-                MCLama.SetActive(true); ctrskenario++;
+                MCLama.SetActive(true); 
             } 
         } else if(tangkapEvent == "Hari Paskah"){
             EasterEgg.SetActive(true);
             if(ctrskenario == 0){
                 SkenarioTxt.text = "Selamat Hari Paskah, cucuku. \n\r Ini hadiahnya buat kamu setelah bantu kakek dalam Musim Ayam.";
-                KakekLama.SetActive(true); ctrskenario++;
+                KakekLama.SetActive(true); 
             } 
+        } else if(tangkapEvent == "Imlek"){
+            Imlek.SetActive(true);
+            if(ctrskenario == 0){
+                SkenarioTxt.text = "WAW! Cucuku!! Lihat, lihat!! Ada naga di sebelah itu!!!";
+                KakekLama.SetActive(true); 
+            }
         }
+        ctrskenario++;
     }
 
     void RevertAllScenarioToFalse(){
-        MCLama.SetActive(false); KakekLama.SetActive(false);
-        MusimAyamPanel.SetActive(false); EasterEgg.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        MCLama.SetActive(false); KakekLama.SetActive(false); MCSekarangTernak.SetActive(false);
+        KakekSekarang.SetActive(false);
+        MusimAyamPanel.SetActive(false); EasterEgg.SetActive(false); Imlek.SetActive(false);
     }
 
     public void AdeganEvent(){
         if(tangkapEvent == "Musim Ayam"){
             if(ctrskenario == 1){
                 SkenarioTxt.text = "Iya, hari ini adalah musimnya dimana kekuatan ayam \n\r yang kita miliki jadi sangat kuat sekali untuk bertelur banyak, cucuku.";
-                MCLama.SetActive(false); KakekLama.SetActive(true); ctrskenario++;
+                MCLama.SetActive(false); KakekLama.SetActive(true); 
             } else if(ctrskenario == 2){
                 SkenarioTxt.text = "Whoa, itu berarti ayamnya Super Chicken, kek!";
-                MCLama.SetActive(true); KakekLama.SetActive(false); ctrskenario++;
+                MCLama.SetActive(true); KakekLama.SetActive(false); 
             } else if(ctrskenario == 3){
                 SkenarioTxt.text = "Hahahaha!! Benar sekali kamu, cucuku! \n\r Ayo bantu kakek ambilkan banyak telur ini!!";
-                MCLama.SetActive(false); KakekLama.SetActive(true); ctrskenario++;
+                MCLama.SetActive(false); KakekLama.SetActive(true); 
             } else if(ctrskenario == 4){
                 SkenarioTxt.text = "Iya kek!!";
-                MCLama.SetActive(true); KakekLama.SetActive(false); ctrskenario++;
+                MCLama.SetActive(true); KakekLama.SetActive(false); 
             } else if(ctrskenario == 5){
                 GameStatus.PickedHubWorld = "Level1"; GameStatus.PickedLevel = 4;
                 SceneManager.LoadScene(GameStatus.PickedHubWorld);
@@ -63,26 +65,52 @@ public class EventScenarioManager : MonoBehaviour
         } else if(tangkapEvent == "Hari Paskah"){
             if(ctrskenario == 1){
                 SkenarioTxt.text = "Makasih, Kakek!! \n\r Tapi ini semua kok pada berwarna-warna begitu ya?";
-                MCLama.SetActive(true); KakekLama.SetActive(false); ctrskenario++;
+                MCLama.SetActive(true); KakekLama.SetActive(false); 
             } else if(ctrskenario == 2){
                 SkenarioTxt.text = "Iya, cucuku. Hari Paskah biasanya untuk seumuranmu sukanya \n\r menggambar-gambar Telur yang sudah dibeli dari kita.";
-                MCLama.SetActive(false); KakekLama.SetActive(true); ctrskenario++;
+                MCLama.SetActive(false); KakekLama.SetActive(true); 
             } else if(ctrskenario == 3){
                 SkenarioTxt.text = "Wah!! Ini juga tetap bisa dimakan toh, kek??";
-                MCLama.SetActive(true); KakekLama.SetActive(false); ctrskenario++;
+                MCLama.SetActive(true); KakekLama.SetActive(false); 
             } else if(ctrskenario == 4){
                 SkenarioTxt.text = "Bisa kok, cucuku! Tenang saja, hahahaha!! \n\r Ya sudah, ayo kita semangat ambili telur lagi!";
-                MCLama.SetActive(false); KakekLama.SetActive(true); ctrskenario++;
+                MCLama.SetActive(false); KakekLama.SetActive(true); 
             } else if(ctrskenario == 5){
                 SkenarioTxt.text = "Telur-telur sekarang ini juga dijualnya mahal lhoo~ \n\r Ayo, bantu kakek sekali lagi cucuku!!";
-                ctrskenario ++;
             } else if(ctrskenario == 6){
                 SkenarioTxt.text = "Baik kek, tunggu aku sebentar!!";
-                MCLama.SetActive(true); KakekLama.SetActive(false); ctrskenario++;
+                MCLama.SetActive(true); KakekLama.SetActive(false); 
             } else if(ctrskenario == 7){
                 GameStatus.PickedHubWorld = "Level1"; GameStatus.PickedLevel = 5;
                 SceneManager.LoadScene(GameStatus.PickedHubWorld);
             }
+        } else if(tangkapEvent == "Imlek"){
+            if(ctrskenario == 1){
+                SkenarioTxt.text = "Kakek tenang, kek! Itu cuma teman-temanku mainan naga!!";
+                MCLama.SetActive(true); KakekLama.SetActive(false); 
+            } else if(ctrskenario == 2){
+                SkenarioTxt.text = "HAHAHAHAHA!! Anak-anak sekarang kok pintar sekali main begituan ya?! \n\r Emang hari ini ada apa??";
+                MCLama.SetActive(false); KakekLama.SetActive(true); 
+            } else if(ctrskenario == 3){
+                SkenarioTxt.text = "Hari ini adalah harinya orang-orang merayakan Hari Raya Imlek, kek. \n\r Atau biasanya juga dibilang sebagai Tahun Baru China.";
+                MCLama.SetActive(true); KakekLama.SetActive(false); 
+            } else if(ctrskenario == 4){
+                SkenarioTxt.text = "HAH!? Tahun Baru kedua!?!? \n\r Wah, harga beli di pasar-pasar bakalan naik kalo gini...";
+                MCLama.SetActive(false); KakekLama.SetActive(true); 
+            } else if(ctrskenario == 5){
+                SkenarioTxt.text = "Tenang saja kek, asal ada aku... \n\r Harga-harga mahal itu tidak ada apa-apanya dengan kerja keras kita, kek!!";
+                MCLama.SetActive(true); KakekLama.SetActive(false); 
+            } else if(ctrskenario == 6){
+                SkenarioTxt.text = "A HA HA HA HA!! \n\r Emang cucuku ini selalu bisa kupercayakan!!";
+                MCLama.SetActive(false); KakekLama.SetActive(true); 
+            } else if(ctrskenario == 7){
+                SkenarioTxt.text = "Baiklah kalau gitu! Harga mahal, tak masalah!! \n\r Ayo, cucuku! Kita selesaikan hari baru dengan semangat baru ini!!";
+            } else if(ctrskenario == 8){
+                GameStatus.PickedHubWorld = "Level5"; GameStatus.PickedLevel = 4;
+                SceneManager.LoadScene(GameStatus.PickedHubWorld);
+            }
         }
+
+        ctrskenario++;
     }
 }

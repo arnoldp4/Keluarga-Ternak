@@ -42,7 +42,7 @@ public class LevelGameplay : MonoBehaviour
     Random randomSpawn = new Random();
     bool sudahNaikLevel = false, mauSpecial = false,
         cekPancakeKeluar = false, cekPizzaKeluar = false, cekBajuKeluar = false;
-    int LevelSapi = 0;
+    int LevelAyam = 0, LevelSapi = 0, LevelDomba = 0;
     float timerKucing = 7f;
     public static int LevelPicked, TutorialRumput;
 
@@ -52,46 +52,113 @@ public class LevelGameplay : MonoBehaviour
         sudahNaikLevel = false; TransporterMax = 5; TPDeliveryTime = 500;
         ResultCanvas.SetActive(false);
         RevertAllIngredientsToZero();
-            SpecialIngredients(true, true, true, true);
-        if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 1){
-            LevelMoney = 100; LevelWell = 5;
-            targetgoal = 10; namagoal = "Rumput";
-            BuildPanel.SetActive(false); LevelPicked = 1;
-            GoalTxt.text = "Goals: \r\n";
-            GoalTxt.text = GoalTxt.text + namagoal + ": " + targetgoal;
-        }
-        else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 2){
-            BuatLevel(300, 5, 5, "Telur");
-            ApplyLevel(false, false, false, false, false, false, false, 2);
-        }
-        else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 3){
-            BuatLevel(200, 5, 2, "Telur Kering");
-            ApplyLevel(true, true, false, false, false, false, false, 3);
-        }   
-        else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 4){
-            BuatLevel(300, 5, 20, "Telur");
-            ApplyLevel(true, true, false, false, false, false, false, 2);
-        }   
-        else if(GameStatus.PickedHubWorld == "Level1" && GameStatus.PickedLevel == 5){
-            BuatLevel(500, 5, 2500, "Uang");
-            ApplyLevel(true, true, false, false, false, false, false, 2);
-        }
-        else if(GameStatus.PickedHubWorld == "Level7" && GameStatus.PickedLevel == 5){
-            BuatLevel(10000, 5, 50000, "Uang");
-            ApplyLevel(true, true, true, true, true, true, true, 35);
-        }
-        CurrentLvlTxt.text = "Level " + GameStatus.PickedLevel.ToString();
-    }
+        SpecialIngredients(true, true, true, true);
+        if(GameStatus.PickedHubWorld == "Level1"){
+            if(GameStatus.PickedLevel == 1){
+                LevelMoney = 100; LevelWell = 5;
+                targetgoal = 10; namagoal = "Rumput";
+                BuildPanel.SetActive(false); LevelPicked = 1;
+                GoalTxt.text = "Goals: \r\n";
+                GoalTxt.text = GoalTxt.text + namagoal + ": " + targetgoal;
+            } else if(GameStatus.PickedLevel == 2){
+                BuatLevel(300, 2, "Ayam");
+                ApplyLevel(false, false, false, false, false, false, false, 2);
+            } else if(GameStatus.PickedLevel == 3){
+                BuatLevel(200, 5, "Telur");
+                ApplyLevel(false, false, false, false, false, false, false, 3);
+            } else if(GameStatus.PickedLevel == 4){
+                BuatLevel(300, 20, "Telur");
+                ApplyLevel(true, true, false, false, false, false, false, 4);
+            } else if(GameStatus.PickedLevel == 5){ 
+                BuatLevel(500, 2500, "Uang");
+                ApplyLevel(true, true, false, false, false, false, false, 5);
+            }
+        } else if(GameStatus.PickedHubWorld == "Level2"){
+            if(GameStatus.PickedLevel == 1){
+                BuatLevel(300, 1, "Sapi");
+                ApplyLevel(true, true ,false, false, false, false, false, 6);
+            } else if(GameStatus.PickedLevel == 2){
+                BuatLevel(750, 2, "Susu");
+                ApplyLevel(true, true, false, false, false, false, false, 7);
+            } else if(GameStatus.PickedLevel == 3){
+                BuatLevel(1000, 3, "Butter");
+                ApplyLevel(true, true, true, false, false, false, false, 8);
+            } else if(GameStatus.PickedLevel == 4){
+                BuatLevel(500, 5, "Sapi");
+                ApplyLevel(true, true, true, false, false, false, false, 9);
+            } else if(GameStatus.PickedLevel == 5){
+                BuatLevel(1500, 5, "Keju");
+                ApplyLevel(true, true, true, false, false, false, false, 10);
+            }
+        } else if(GameStatus.PickedHubWorld == "Level3"){
+            if(GameStatus.PickedLevel == 1){
+                
+            } else if(GameStatus.PickedLevel == 2){
+                
+            } else if(GameStatus.PickedLevel == 3){
 
-    // void TestLevel(int money, int well, int totalgoal){
-    //     LevelMoney = money; LevelWell = well; cgoal = totalgoal;
-    //     RevertAllIngredientsToZero();
-    //     MoneyTxt.text = "Uang: " + LevelMoney; WellTxt.text = "Sumur: " + LevelWell;
-    //     GoalTxt.text = "Goals: \r\n";
-    //     for(int i = 0; i < totalgoal; i++){
-    //         GoalTxt.text = GoalTxt.text + goallist[i] + ": " + tsgoal[i] + " \r\n";
-    //     }
-    // }
+            } else if(GameStatus.PickedLevel == 4){
+
+            } else if(GameStatus.PickedLevel == 5){
+
+            }
+        } else if(GameStatus.PickedHubWorld == "Level4"){
+            if(GameStatus.PickedLevel == 1){
+
+            } else if(GameStatus.PickedLevel == 2){
+
+            } else if(GameStatus.PickedLevel == 3){
+
+            } else if(GameStatus.PickedLevel == 4){
+
+            } else if(GameStatus.PickedLevel == 5){
+                
+            }
+        } else if(GameStatus.PickedHubWorld == "Level5"){
+            if(GameStatus.PickedLevel == 1){
+
+            } else if(GameStatus.PickedLevel == 2){
+
+            } else if(GameStatus.PickedLevel == 3){
+
+            } else if(GameStatus.PickedLevel == 4){
+
+            } else if(GameStatus.PickedLevel == 5){
+                
+            }
+        } else if(GameStatus.PickedHubWorld == "Level6"){
+            if(GameStatus.PickedLevel == 1){
+
+            } else if(GameStatus.PickedLevel == 2){
+
+            } else if(GameStatus.PickedLevel == 3){
+
+            } else if(GameStatus.PickedLevel == 4){
+
+            } else if(GameStatus.PickedLevel == 5){
+                
+            }
+        } else if(GameStatus.PickedHubWorld == "Level7"){
+            if(GameStatus.PickedLevel == 1){
+
+            } else if(GameStatus.PickedLevel == 2){
+
+            } else if(GameStatus.PickedLevel == 3){
+                
+            } else if(GameStatus.PickedLevel == 4){
+
+            } else if(GameStatus.PickedLevel == 5){
+                BuatLevel(10000, 50000, "Uang");
+                ApplyLevel(true, true, true, true, true, true, true, 35);
+            }
+        }
+        
+        CurrentLvlTxt.text = "Level " + LevelPicked.ToString();
+        kondisiEvent = GameStatus.PickedEvent;
+        if(kondisiEvent != "None"){
+            GoalTxt.text = GoalTxt.text + "\n\r Event: " + kondisiEvent;
+        }
+    }
 
     void RevertAllIngredientsToZero(){
         LevelTelur = 0; LevelTlrKering = 0; LevelKue = 0;
@@ -99,14 +166,14 @@ public class LevelGameplay : MonoBehaviour
         LevelWol = 0; LevelBenang = 0; LevelKain = 0;
         LevelSirup = 0; LevelTepung = 0; LevelCat = 0;
         LevelPancake = 0; LevelPizza = 0; LevelBaju = 0;
-        TransporterMax = 5; WellMax = 5;
+        TransporterMax = 5; WellMax = 5; LevelWell = WellMax;
         CostWell = 20; TPDeliveryTime = 500;
         mauSpecial = false; CureProcess = false;
         UpgradeTransporter = 1; UpgradeWell = 1;
     }
 
-    void BuatLevel(int money, int well, int goal, string tgoal){
-        LevelMoney = money; LevelWell = well; targetgoal = goal; namagoal = tgoal;
+    void BuatLevel(int money, int goal, string tgoal){
+        LevelMoney = money; targetgoal = goal; namagoal = tgoal;
         RevertAllIngredientsToZero();
         MoneyTxt.text = "Uang: " + LevelMoney; WellTxt.text = "Sumur: " + LevelWell;
         GoalTxt.text = "Goals: \r\n";
@@ -173,6 +240,24 @@ public class LevelGameplay : MonoBehaviour
 #endregion
         //Cek Uang di bagian Binatang
         BinatangButtons();
+    }
+    void HasilResult(){
+        GameCanvas.SetActive(false);
+        ResultCanvas.SetActive(true);
+        if(sudahNaikLevel == false){
+            if(PlayerPrefs.GetString("CurrentUser") == "User1"){
+                int kondisilevel = PlayerPrefs.GetInt("LevelPlayer1");
+                if(kondisilevel == LevelPicked){
+                    PlayerPrefs.SetInt("LevelPlayer1", kondisilevel+1);
+                }
+            }
+            else if(PlayerPrefs.GetString("CurrentUser") == "User2"){
+                int kondisilevel = PlayerPrefs.GetInt("LevelPlayer2");
+                if(kondisilevel == LevelPicked){
+                    PlayerPrefs.SetInt("LevelPlayer2", kondisilevel+1);
+                }
+            }
+        sudahNaikLevel = true;}
     }
 
     void cheat1000MoneyPlusAllMatsPlus10(){
@@ -241,13 +326,7 @@ public class LevelGameplay : MonoBehaviour
         } else {
             BinatangInteract(true, true, true, true, true);
         }}
-    void HasilResult(){
-        GameCanvas.SetActive(false);
-        ResultCanvas.SetActive(true);
-        if(sudahNaikLevel == false){
-        PlayerScores.PlayerLevel += 1;
-        sudahNaikLevel = true;}
-    }
+
     void Cure(){
         if(GameObject.Find("AyamSakit(Clone)") || GameObject.Find("SapiSakit(Clone)") || GameObject.Find("DombaSakit(Clone)")){
             SembuhBtn.interactable = true;

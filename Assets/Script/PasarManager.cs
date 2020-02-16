@@ -33,19 +33,25 @@ public class PasarManager : MonoBehaviour
     public void BuySyrup(){
         cekBatasPesawatUang();
         if(ctrBeli == false){
-            beliSirup++; totalbeli += 25;
+            beliSirup++; 
+            if(GameStatus.PickedEvent == "Imlek") totalbeli += 40;
+            else totalbeli += 25;
         }
     }
     public void BuyFlour(){
         cekBatasPesawatUang();
         if(ctrBeli == false){
-            beliTepung++; totalbeli += 50;
+            beliTepung++; 
+            if(GameStatus.PickedEvent == "Imlek") totalbeli += 65;
+            totalbeli += 50;
         }
     }
     public void BuyCanofPaint(){
         cekBatasPesawatUang();
         if(ctrBeli == false){
-            beliCat++; totalbeli += 100;
+            beliCat++; 
+            if(GameStatus.PickedEvent == "Imlek") totalbeli += 115;
+            else totalbeli += 100;
         }
     }
     public void ApplyToBuy(){
