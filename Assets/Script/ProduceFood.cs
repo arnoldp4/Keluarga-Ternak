@@ -61,7 +61,7 @@ public class ProduceFood : MonoBehaviour
             {
                 MP=Input.mousePosition;
                 //Convert the targetPosition according to Mouse Position 
-                targetPosition = new Vector3(MP.x-405, MP.y-100, 0);
+                targetPosition = new Vector3(MP.x, MP.y, 0);
                 Debug.Log("Ditekan");
                 float cekx = targetPosition.x - plain.transform.position.x,
                     ceky = targetPosition.y - plain.transform.position.y;

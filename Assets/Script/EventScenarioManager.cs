@@ -82,7 +82,7 @@ public class EventScenarioManager : MonoBehaviour
                 MCLama.SetActive(true); KakekLama.SetActive(false); 
             } else if(ctrskenario == 7){
                 GameStatus.PickedHubWorld = "Level1"; GameStatus.PickedLevel = 5;
-                SceneManager.LoadScene(GameStatus.PickedHubWorld);
+                SceneManager.LoadScene("GameplayLevel");
             }
         } else if(tangkapEvent == "Imlek"){
             if(ctrskenario == 1){
@@ -107,7 +107,7 @@ public class EventScenarioManager : MonoBehaviour
                 SkenarioTxt.text = "Baiklah kalau gitu! Harga mahal, tak masalah!! \n\r Ayo, cucuku! Kita selesaikan hari baru dengan semangat baru ini!!";
             } else if(ctrskenario == 8){
                 GameStatus.PickedHubWorld = "Level5"; GameStatus.PickedLevel = 4;
-                SceneManager.LoadScene(GameStatus.PickedHubWorld);
+                SceneManager.LoadScene("GameplayLevel");
             }
         }
 
