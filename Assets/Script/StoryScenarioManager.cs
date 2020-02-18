@@ -58,7 +58,7 @@ public class StoryScenarioManager : MonoBehaviour
                 SkenarioTxt.text = "BAIK KEK!!";
                 MCLama.SetActive(true); KakekLama.SetActive(false); 
             } else if(ctrskenario == 7){
-                GameStatus.PickedHubWorld = "Level2"; GameStatus.PickedLevel = 1;
+                GameStatus.PickedHubWorld = "GameplayLevel"; GameStatus.PickedLevel = 1;
                 GameStatus.PickedEvent = "None";
                 SceneManager.LoadScene(GameStatus.PickedHubWorld);
             }
@@ -103,7 +103,7 @@ public class StoryScenarioManager : MonoBehaviour
             } else if(ctrskenario == 14){
                 SkenarioTxt.text = "Ayo! Ayo!! \n\r Akan ku packing barang-barang ini buat kesana langsung!";               
             } else if(ctrskenario == 15){
-                GameStatus.PickedHubWorld = "Level2"; GameStatus.PickedLevel = 5;
+                GameStatus.PickedHubWorld = "GameplayLevel"; GameStatus.PickedLevel = 5;
                 GameStatus.PickedEvent = "None";
                 SceneManager.LoadScene(GameStatus.PickedHubWorld);
             }

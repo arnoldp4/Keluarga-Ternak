@@ -8,7 +8,7 @@ public class EventScenarioManager : MonoBehaviour
 {
     string tangkapEvent; int ctrskenario;
     public GameObject MCLama, KakekLama, MCSekarangTernak, KakekSekarang,
-        MusimAyamPanel, EasterEgg, Imlek;
+        MusimAyamPanel, EasterEgg, Imlek, Natal, TahunBaru;
     public Text SkenarioTxt;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,12 @@ public class EventScenarioManager : MonoBehaviour
             if(ctrskenario == 0){
                 SkenarioTxt.text = "WAW! Cucuku!! Lihat, lihat!! Ada naga di sebelah itu!!!";
                 KakekLama.SetActive(true); 
+            }
+        } else if(tangkapEvent == "Natal"){
+            Natal.SetActive(true);
+            if(ctrskenario == 0){
+                SkenarioTxt.text = "HO! HO!! HO!!! HOOOOO~ \n\r SELAMAT NATAL, CUCUKU YANG TERCINTA!!";
+                KakekSekarang.SetActive(true);
             }
         }
         ctrskenario++;
@@ -107,6 +113,31 @@ public class EventScenarioManager : MonoBehaviour
                 SkenarioTxt.text = "Baiklah kalau gitu! Harga mahal, tak masalah!! \n\r Ayo, cucuku! Kita selesaikan hari baru dengan semangat baru ini!!";
             } else if(ctrskenario == 8){
                 GameStatus.PickedHubWorld = "Level5"; GameStatus.PickedLevel = 4;
+                SceneManager.LoadScene("GameplayLevel");
+            }
+        } else if(tangkapEvent == "Natal"){
+            if(ctrskenario == 1){
+                SkenarioTxt.text = "Hahaha!! Kakek bisa aja deh~ \n\r Ngomong-ngomong di luar kenapa ini kek??";
+                MCSekarangTernak.SetActive(true); KakekSekarang.SetActive(false);
+            } else if(ctrskenario == 2){
+                SkenarioTxt.text = "Ohh? Di luar banyak sekali pohon-pohon yang siap dibuat \n\r untuk ditebang dan dijual yang membutuhkan Pohon Natal.";
+                MCSekarangTernak.SetActive(false); KakekSekarang.SetActive(true);
+            } else if(ctrskenario == 3){
+                SkenarioTxt.text = "Wow, segini banyak pula pohon yang kita siapkan?! \n\r Emang Kakek ini selalu dua langkah lebih maju dari lainnya..";
+                MCSekarangTernak.SetActive(true); KakekSekarang.SetActive(false);
+            } else if(ctrskenario == 4){
+                SkenarioTxt.text = "Hahahaha!! Kamu emang sukanya bikin Kakek terpesona aja~ \n\r Untuk hari ini, aku minta bantuanmu mengurus peternakan Kakek.";
+                MCSekarangTernak.SetActive(false); KakekSekarang.SetActive(true);
+            } else if(ctrskenario == 5){
+                SkenarioTxt.text = "Sekali lagi, apakah calon penerima hadiah siap \n\r untuk melakukan tugas dari Kakek? HAHAHAHA!!";
+            } else if(ctrskenario == 6){
+                SkenarioTxt.text = "Bisa dong, kek~ Semuanya akan aku selesaikan hari ini!! \n\r Jadi Kakek bisa tenang saat jadi Santa~";
+                MCSekarangTernak.SetActive(true); KakekSekarang.SetActive(false);
+            } else if(ctrskenario == 7){
+                SkenarioTxt.text = "HAHAHAHAHAHA!! Baiklah, Kakek 'Santa' ini akan siap \n\r memberikan banyak hadiah~";
+                MCSekarangTernak.SetActive(false); KakekSekarang.SetActive(true);
+            } else if(ctrskenario == 8){
+                GameStatus.PickedHubWorld = "Level6"; GameStatus.PickedLevel = 3;
                 SceneManager.LoadScene("GameplayLevel");
             }
         }

@@ -61,11 +61,13 @@ public class ProduceFood : MonoBehaviour
             {
                 MP=Input.mousePosition;
                 //Convert the targetPosition according to Mouse Position 
-                targetPosition = new Vector3(MP.x, MP.y, 0);
-                Debug.Log("Ditekan");
+                // targetPosition = new Vector3(MP.x-405, MP.y-100, 0); //Bagian SpawnGrass untuk yang di Asus
+                targetPosition = new Vector3(MP.x-505, MP.y-120, 0); //Untuk Mac
                 float cekx = targetPosition.x - plain.transform.position.x,
                     ceky = targetPosition.y - plain.transform.position.y;
-                if(cekx >= -580 && cekx <= -230 && ceky <= 80 && ceky >= -60)
+                // if(cekx >= -580 && cekx <= -230 && ceky <= 80 && ceky >= -60) //Bagian SpawnGrass untuk yang di Asus
+                Debug.Log("Cek X: " + cekx + " Cek Y: " + ceky);
+                if(cekx >= -760 && cekx <= -250 && ceky >= -258 && ceky <= -30)
                 {
                     LevelGameplay.LevelWell-=1; var grass = Instantiate(grassObj,targetPosition,Quaternion.identity);
                     grass.transform.SetParent(plain.transform, false);
