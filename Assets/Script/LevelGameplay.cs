@@ -230,8 +230,10 @@ public class LevelGameplay : MonoBehaviour
             Pancake.gameObject.SetActive(false); Pancake.interactable = false;
             Pizza.gameObject.SetActive(false); Pizza.interactable = false;
             Boutique.gameObject.SetActive(false); Boutique.interactable = false;
-            PancakePanel.SetActive(paPanel); PizzaPanel.SetActive(pzPanel);
-            ClothesPanel.SetActive(clPanel);
+            PancakePanel.SetActive(false); PizzaPanel.SetActive(false);
+            ClothesPanel.SetActive(false);
+            PancakeChangeBtn.gameObject.SetActive(paPanel); PizzaChangeBtn.gameObject.SetActive(pzPanel);
+            BoutiqueChangeBtn.gameObject.SetActive(clPanel);
         }
     }
     void SpecialIngredients(bool keluarspecial, bool pancakeSpecial, bool pizzaSpecial, bool clothesSpecial){
