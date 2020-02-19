@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class StoryScenarioManager : MonoBehaviour
 {
     string tangkapStory; int ctrskenario;
-    public GameObject MCLama, KakekLama, MCSekarang, KakekSekarang,
-        PeternakanLama, RumahSekarang, SapiCutscene;
+    public GameObject MCLama, KakekLama, MCSekarang, MCSekarangTernak, KakekSekarang, Nenek,
+        PeternakanLama, RumahSekarang, SapiCutscene, Renovasi, FinalScenario;
     public Text SkenarioTxt;
     void Start()
     {
@@ -17,24 +17,25 @@ public class StoryScenarioManager : MonoBehaviour
         ctrskenario = 0;
         if(tangkapStory == "Story2"){
             PeternakanLama.SetActive(true);
-            if(ctrskenario == 0){
-                SkenarioTxt.text = "Baiklah, cucuku. Setelah kamu telah memahami dasar dengan peternakan kita.. \n\r Bagaimana kita mencoba sedikit berbeda dari biasanya?";
-                KakekLama.SetActive(true); 
-            } 
+            SkenarioTxt.text = "Baiklah, cucuku. Setelah kamu telah memahami dasar dengan peternakan kita.. \n\r Bagaimana kita mencoba sedikit berbeda dari biasanya?";
+            KakekLama.SetActive(true); 
         } else if(tangkapStory == "Story3"){
             PeternakanLama.SetActive(true);
-            if(ctrskenario == 0){
-                SkenarioTxt.text = "Kakek! Kakek!! Aku dapat surat dari papa!!";
-                MCLama.SetActive(true); 
-            } 
+            SkenarioTxt.text = "Kakek! Kakek!! Aku dapat surat dari papa!!";
+            MCLama.SetActive(true); 
+        } else if(tangkapStory == "FinalStory"){
+            FinalScenario.SetActive(true);
+            SkenarioTxt.text = "Akhirnya, cucuku... Selama banyak kali engkau membantuku, \n\r sudah bisa dengan sempurna hingga sekarang..";
+            KakekSekarang.SetActive(true);
         }
         ctrskenario++;
     }
     void RevertAllScenarioToFalse(){
-        MCLama.SetActive(false); KakekLama.SetActive(false);
-        MCSekarang.SetActive(false); KakekSekarang.SetActive(false);
+        MCLama.SetActive(false); KakekLama.SetActive(false); MCSekarangTernak.SetActive(false);
+        MCSekarang.SetActive(false); KakekSekarang.SetActive(false); Nenek.SetActive(false);
         PeternakanLama.SetActive(false); RumahSekarang.SetActive(false);
-        SapiCutscene.SetActive(false);
+        SapiCutscene.SetActive(false); Renovasi.SetActive(false);
+        FinalScenario.SetActive(false);
     }
 
     public void AdeganStory(){
@@ -60,7 +61,7 @@ public class StoryScenarioManager : MonoBehaviour
             } else if(ctrskenario == 7){
                 GameStatus.PickedHubWorld = "Level2"; GameStatus.PickedLevel = 1;
                 GameStatus.PickedEvent = "None";
-                SceneManager.LoadScene(GameStatus.PickedHubWorld);
+                SceneManager.LoadScene("GameplayLevel");
             }
         } else if(tangkapStory == "Story3"){
             if(ctrskenario == 1){
@@ -105,7 +106,40 @@ public class StoryScenarioManager : MonoBehaviour
             } else if(ctrskenario == 15){
                 GameStatus.PickedHubWorld = "Level2"; GameStatus.PickedLevel = 5;
                 GameStatus.PickedEvent = "None";
-                SceneManager.LoadScene(GameStatus.PickedHubWorld);
+                SceneManager.LoadScene("GameplayLevel");
+            }
+        } else if(tangkapStory == "FinalStory"){
+            if(ctrskenario == 1){
+                SkenarioTxt.text = "Engkau telah menguasai segala hal-hal yang telah Kakek berikan padamu.. \n\r Begitu hebatnya dirimu telah menguasai dengan cepat tidak seperti kakek pada mudanya AHAHAHAHAHA!!";
+            } else if(ctrskenario == 2){
+                SkenarioTxt.text = "Ahhh, kek! Jangan begitu lah~ \n\r Ini semua tidak bakal aku bisa raih jikalau tanpa Kakek dan Nenek...";
+                MCSekarangTernak.SetActive(true); KakekSekarang.SetActive(false);
+            } else if(ctrskenario == 3){
+                SkenarioTxt.text = "Hahahaha... Cucuku emang sudah membawa darah semangatnya di sayangku. \n\r Tidak sia-sia dia semangat sekali buatmu, cucuku.";
+                Nenek.SetActive(true); MCSekarangTernak.SetActive(false);
+            } else if(ctrskenario == 4){
+                SkenarioTxt.text = "Terima kasih banyak, nek. Tapi ngomong-ngomong kek... \n\r Ini kita kumpul disini buat apa ya?";
+                MCSekarangTernak.SetActive(true); Nenek.SetActive(false);
+            } else if(ctrskenario == 5){
+                SkenarioTxt.text = "Ehem! Ehem!! \n\r Kakek akan memberi tes terakhir untuk engkau menggantikan posisi Kakek, beneran kali ini.";
+                KakekSekarang.SetActive(true); MCSekarangTernak.SetActive(false);
+            } else if(ctrskenario == 6){
+                SkenarioTxt.text = "Dalam lima tes ini, kau akan menghadapi salah satu tantangan yang tersusah... \n\r Bahkan hanya akulah yang bisa kerjakan itu, semua peternak tidak bisa!";
+            } else if(ctrskenario == 7){
+                SkenarioTxt.text = "Tenang saja, kek! Dengan semua ajaran-ajaran yang Kakek berikan padaku.. \n\r Apapun itu tesnya, aku siap hadapinya!!";
+                MCSekarangTernak.SetActive(true); KakekSekarang.SetActive(false);
+            } else if(ctrskenario == 8){
+                SkenarioTxt.text = "A HA HA HA HA ! ! \n\r ITULAH BARU CUCUKU YANG KUBANGGAKAN!!";
+                KakekSekarang.SetActive(true); MCSekarangTernak.SetActive(false);
+            } else if(ctrskenario == 9){
+                SkenarioTxt.text = "Ayo! Kita mulai tes nya sekarang juga!!";
+            } else if(ctrskenario == 10){
+                SkenarioTxt.text = "SIAP KEK!!";
+                MCSekarangTernak.SetActive(true); KakekSekarang.SetActive(false);
+            } else if(ctrskenario == 11){
+                GameStatus.PickedHubWorld = "Level7"; GameStatus.PickedLevel = 1;
+                GameStatus.PickedEvent = "None";
+                SceneManager.LoadScene("GameplayLevel");
             }
         }
 

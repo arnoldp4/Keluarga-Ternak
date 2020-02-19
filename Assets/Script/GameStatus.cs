@@ -12,8 +12,11 @@ public class GameStatus : MonoBehaviour
     
     //Button buat buka tutup scene/panel
     public void LoadScene(string SceneName){
-        PickedHubWorld = SceneName;
         SceneManager.LoadScene(SceneName);
+    }
+    public void LoadGameplay(string SceneName){
+        PickedHubWorld = SceneName;
+        SceneManager.LoadScene("GameplayLevel");
     }
     public void BuatEvent(string EventName){
         PickedEvent = EventName;

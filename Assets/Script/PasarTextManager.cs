@@ -9,7 +9,7 @@ public class PasarTextManager : MonoBehaviour
     public static int CostUpgradeWell, CostUpradeTransporter;
     public Text SirupTxt, TepungTxt, CatTxt, TotalBeliTxt,
         UpgradeTransporterTxt, UpgradeWellTxt, 
-        CostTransporterTxt, CostWellTxt;
+        CostTransporterTxt, CostWellTxt, HargaSirupTxt, HargaTepungTxt, HargaCatTxt;
     public Slider PasarProgressBar;
     public Button UPTransporterBtn, UPWellBtn;
     public Button BuyBtnCek;

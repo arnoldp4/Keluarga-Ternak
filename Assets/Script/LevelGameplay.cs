@@ -37,7 +37,8 @@ public class LevelGameplay : MonoBehaviour
         SpinneryLock, Spinnery, FabricLock, Fabric,
         ChangePancake, ChangePizza, ChangeClothes,
         PancakeLock, Pancake, PizzaLock, Pizza, 
-        BoutiqueLock, Boutique, SembuhBtn;
+        BoutiqueLock, Boutique, SembuhBtn, 
+        PancakeChangeBtn, PizzaChangeBtn, BoutiqueChangeBtn;
     Vector3 targetPosition;
     Random randomSpawn = new Random();
     bool sudahNaikLevel = false, mauSpecial = false,
@@ -92,61 +93,85 @@ public class LevelGameplay : MonoBehaviour
             }
         } else if(GameStatus.PickedHubWorld == "Level3"){
             if(GameStatus.PickedLevel == 1){
-                
+                BuatLevel(2500, 2, "Domba");
+                ApplyLevel(true, true, true, false, false, false, false, 11);
             } else if(GameStatus.PickedLevel == 2){
-                
+                BuatLevel(3000, 5, "Wol");
+                ApplyLevel(true, true, true, false, false, false, false, 12);
             } else if(GameStatus.PickedLevel == 3){
-
+                BuatLevel(3250, 4, "Benang");
+                ApplyLevel(true, true, true, true, false, false, false, 13);
             } else if(GameStatus.PickedLevel == 4){
-
+                BuatLevel(4500, 6, "Kain");
+                ApplyLevel(true, true, true, true, false, false, false, 14);
             } else if(GameStatus.PickedLevel == 5){
-
+                BuatLevel(5555, 55, "Wol");
+                ApplyLevel(true, true, true, true, false, false, false, 15);
             }
         } else if(GameStatus.PickedHubWorld == "Level4"){
             if(GameStatus.PickedLevel == 1){
-
+                BuatLevel(1000, 10, "Sapi");
+                ApplyLevel(true, true, true, true, false, false, false, 16);
             } else if(GameStatus.PickedLevel == 2){
-
+                BuatLevel(2500, 7500, "Uang");
+                ApplyLevel(true, true, true, true, false, false, false, 17);
             } else if(GameStatus.PickedLevel == 3){
-
+                BuatLevel(1550, 6275, "Uang");
+                ApplyLevel(true, true, true, true, false, false, false, 18);
             } else if(GameStatus.PickedLevel == 4){
-
+                BuatLevel(555, 10, "Telur");
+                ApplyLevel(true, true, true, true, false, false, false, 19);
             } else if(GameStatus.PickedLevel == 5){
-                
+                BuatLevel(5550, 10, "Butter");
+                ApplyLevel(true, true, true, true, false, false, false, 20);
             }
         } else if(GameStatus.PickedHubWorld == "Level5"){
             if(GameStatus.PickedLevel == 1){
-
+                BuatLevel(1500, 5, "Domba");
+                ApplyLevel(true, true, true, true, false, false, false, 21);
             } else if(GameStatus.PickedLevel == 2){
-
+                BuatLevel(2500, 3, "Keju");
+                ApplyLevel(true, true, true, true, false, false, false, 22);
             } else if(GameStatus.PickedLevel == 3){
-
+                BuatLevel(3330, 3, "Pancake");
+                ApplyLevel(true, true, true, true, true, false, false, 23);
             } else if(GameStatus.PickedLevel == 4){
-
+                BuatLevel(4440, 4, "Pizza");
+                ApplyLevel(true, true, true, true, true, true, false, 24);
             } else if(GameStatus.PickedLevel == 5){
-                
+                BuatLevel(5000, 10, "Pizza");
+                ApplyLevel(true, true, true, true, true, true, false, 25);
             }
         } else if(GameStatus.PickedHubWorld == "Level6"){
             if(GameStatus.PickedLevel == 1){
-
+                BuatLevel(10000, 3, "Level Sumur");
+                ApplyLevel(true, true, true, true, true, true, false, 26);
             } else if(GameStatus.PickedLevel == 2){
-
+                BuatLevel(10000, 3, "Level Transporter");
+                ApplyLevel(true, true, true, true, true, true, false, 27);
             } else if(GameStatus.PickedLevel == 3){
-
+                BuatLevel(5000, 5, "Level Sumur");
+                ApplyLevel(true, true, true, true, true, true, false, 28);
             } else if(GameStatus.PickedLevel == 4){
-
+                BuatLevel(7500, 7, "Pizza");
+                ApplyLevel(true, true, true, true, true, true, false, 29);
             } else if(GameStatus.PickedLevel == 5){
-                
+                BuatLevel(8880, 8, "Baju");
+                ApplyLevel(true, true, true, true, true, true, true, 30);
             }
         } else if(GameStatus.PickedHubWorld == "Level7"){
             if(GameStatus.PickedLevel == 1){
-
+                BuatLevel(7500, 15000, "Uang");
+                ApplyLevel(true, true, true, true, true, true, true, 31);
             } else if(GameStatus.PickedLevel == 2){
-
+                BuatLevel(15000, 15, "Baju");
+                ApplyLevel(true, true, true, true, true, true, true, 32);
             } else if(GameStatus.PickedLevel == 3){
-                
+                BuatLevel(5000, 10, "Pancake");
+                ApplyLevel(true, true, true, true, true, true, true, 33);
             } else if(GameStatus.PickedLevel == 4){
-
+                BuatLevel(10000, 13, "Pizza");
+                ApplyLevel(true, true, true, true, true, true, true, 34);
             } else if(GameStatus.PickedLevel == 5){
                 BuatLevel(10000, 50000, "Uang");
                 ApplyLevel(true, true, true, true, true, true, true, 35);
@@ -158,6 +183,13 @@ public class LevelGameplay : MonoBehaviour
         if(kondisiEvent != "None"){
             GoalTxt.text = GoalTxt.text + "\n\r Event: " + kondisiEvent;
         }
+
+        if(PancakePanel.activeInHierarchy == false) PancakeChangeBtn.gameObject.SetActive(false);
+            else PancakeChangeBtn.gameObject.SetActive(true);
+        if(PizzaPanel.activeInHierarchy == false) PizzaChangeBtn.gameObject.SetActive(false);
+            else PizzaChangeBtn.gameObject.SetActive(true);
+        if(ClothesPanel.activeInHierarchy == false) BoutiqueChangeBtn.gameObject.SetActive(false);
+            else BoutiqueChangeBtn.gameObject.SetActive(true);
     }
 
     void RevertAllIngredientsToZero(){
@@ -198,8 +230,10 @@ public class LevelGameplay : MonoBehaviour
             Pancake.gameObject.SetActive(false); Pancake.interactable = false;
             Pizza.gameObject.SetActive(false); Pizza.interactable = false;
             Boutique.gameObject.SetActive(false); Boutique.interactable = false;
-            PancakePanel.SetActive(paPanel); PizzaPanel.SetActive(pzPanel);
-            ClothesPanel.SetActive(clPanel);
+            PancakePanel.SetActive(false); PizzaPanel.SetActive(false);
+            ClothesPanel.SetActive(false);
+            PancakeChangeBtn.gameObject.SetActive(paPanel); PizzaChangeBtn.gameObject.SetActive(pzPanel);
+            BoutiqueChangeBtn.gameObject.SetActive(clPanel);
         }
     }
     void SpecialIngredients(bool keluarspecial, bool pancakeSpecial, bool pizzaSpecial, bool clothesSpecial){
@@ -237,6 +271,36 @@ public class LevelGameplay : MonoBehaviour
         else if(LevelTlrKering >= targetgoal && LevelPicked == 3) HasilResult();
         else if(LevelTelur >= targetgoal && LevelPicked == 4) HasilResult();
         else if(LevelMoney >= targetgoal && LevelPicked == 5) HasilResult();
+        else if(LevelSapi >= targetgoal && LevelPicked == 6) HasilResult();
+        else if(LevelSusu >= targetgoal && LevelPicked == 7) HasilResult();
+        else if(LevelButter >= targetgoal && LevelPicked == 8) HasilResult();
+        else if(LevelSapi >= targetgoal && LevelPicked == 9) HasilResult();
+        else if(LevelKeju >= targetgoal && LevelPicked == 10) HasilResult();
+        else if(LevelDomba >= targetgoal && LevelPicked == 11) HasilResult();
+        else if(LevelWol >= targetgoal && LevelPicked == 12) HasilResult();
+        else if(LevelBenang >= targetgoal && LevelPicked == 13) HasilResult();
+        else if(LevelKain >= targetgoal && LevelPicked == 14) HasilResult();
+        else if(LevelWol >= targetgoal && LevelPicked == 15) HasilResult();
+        else if(LevelSapi >= targetgoal && LevelPicked == 16) HasilResult();
+        else if(LevelMoney >= targetgoal && LevelPicked == 17) HasilResult();
+        else if(LevelMoney >= targetgoal && LevelPicked == 18) HasilResult();
+        else if(LevelTelur >= targetgoal && LevelPicked == 19) HasilResult();
+        else if(LevelButter >= targetgoal && LevelPicked == 20) HasilResult();
+        else if(LevelDomba >= targetgoal && LevelPicked == 21) HasilResult();
+        else if(LevelKeju >= targetgoal && LevelPicked == 22) HasilResult();
+        else if(LevelPancake >= targetgoal && LevelPicked == 23) HasilResult();
+        else if(LevelPizza >= targetgoal && LevelPicked == 24) HasilResult();
+        else if(LevelPizza >= targetgoal && LevelPicked == 25) HasilResult();
+        else if(UpgradeWell >= targetgoal && LevelPicked == 26) HasilResult();
+        else if(UpgradeTransporter >= targetgoal && LevelPicked == 27) HasilResult();
+        else if(UpgradeWell >= targetgoal && LevelPicked == 28) HasilResult();
+        else if(LevelPizza >= targetgoal && LevelPicked == 29) HasilResult();
+        else if(LevelBaju >= targetgoal && LevelPicked == 30) HasilResult();
+        else if(LevelMoney >= targetgoal && LevelPicked == 31) HasilResult();
+        else if(LevelBaju >= targetgoal && LevelPicked == 32) HasilResult();
+        else if(LevelPancake >= targetgoal && LevelPicked == 33) HasilResult();
+        else if(LevelPizza >= targetgoal && LevelPicked == 34) HasilResult();
+        else if(LevelMoney >= targetgoal && LevelPicked == 35) HasilResult();
 #endregion
         //Cek Uang di bagian Binatang
         BinatangButtons();
@@ -390,7 +454,7 @@ public class LevelGameplay : MonoBehaviour
                 var ayam = Instantiate(AyamObj,targetPosition,Quaternion.identity);
                 ayam.transform.SetParent(GameCanvas.transform, false);
             }
-            LevelMoney -= 100;
+            LevelMoney -= 100; LevelAyam +=1;
         } else {
                 var ayam = Instantiate(AyamObj,targetPosition,Quaternion.identity);
                 ayam.transform.SetParent(GameCanvas.transform, false);
@@ -409,8 +473,7 @@ public class LevelGameplay : MonoBehaviour
                 var sapi = Instantiate(SapiObj,targetPosition,Quaternion.identity);
                 sapi.transform.SetParent(GameCanvas.transform, false);
             }
-            LevelMoney -= 500;
-            LevelSapi += 1;
+            LevelMoney -= 500; LevelSapi += 1;
         } else {
             var sapi = Instantiate(SapiObj,targetPosition,Quaternion.identity);
             sapi.transform.SetParent(GameCanvas.transform, false);
@@ -429,7 +492,7 @@ public class LevelGameplay : MonoBehaviour
                 var domba = Instantiate(DombaObj,targetPosition,Quaternion.identity);
                 domba.transform.SetParent(GameCanvas.transform, false);
             }
-            LevelMoney -= 1000;
+            LevelMoney -= 1000; LevelDomba+=1;
         } else {
             var domba = Instantiate(DombaObj,targetPosition,Quaternion.identity);
             domba.transform.SetParent(GameCanvas.transform, false);
