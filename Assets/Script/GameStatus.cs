@@ -12,8 +12,11 @@ public class GameStatus : MonoBehaviour
     
     //Button buat buka tutup scene/panel
     public void LoadScene(string SceneName){
-        PickedHubWorld = SceneName;
         SceneManager.LoadScene(SceneName);
+    }
+    public void LoadGameplay(string SceneName){
+        PickedHubWorld = SceneName;
+        SceneManager.LoadScene("GameplayLevel");
     }
     public void BuatEvent(string EventName){
         PickedEvent = EventName;
@@ -42,26 +45,59 @@ public class GameStatus : MonoBehaviour
         PickedLevel = LevelNumber;
     }
     public void NextLevelPicked(){
-        if(PickedHubWorld == "Level1" && PickedLevel == 5){
-            PickedHubWorld = "Level2"; PickedLevel = 1;
+        //Event Trigger
+        if(PickedHubWorld == "Level1" && PickedLevel == 3){
+            PickedLevel+=1; PickedEvent = "Musim Ayam";
+            SceneManager.LoadScene("EventStory");
+        } else if(PickedHubWorld == "Level1" && PickedLevel == 4){
+            PickedLevel+=1; PickedEvent = "Hari Paskah";
+            SceneManager.LoadScene("EventStory");
+        } else if(PickedHubWorld == "Level5" && PickedLevel == 3){
+            PickedLevel+=1; PickedEvent = "Imlek";
+            SceneManager.LoadScene("EventStory");
+        } else if(PickedHubWorld == "Level6" && PickedLevel == 4){
+            PickedLevel+=1; PickedEvent = "Natal";
+            SceneManager.LoadScene("EventStory");
+        } else if(PickedHubWorld == "Level7" && PickedLevel == 4){
+            PickedLevel+=1; PickedEvent = "Tahun Baru";
+            SceneManager.LoadScene("EventStory");
+        } else if(PickedHubWorld == "Level2" && PickedLevel == 4){
+            PickedEvent = "Story3";
+            SceneManager.LoadScene("MainStory");
+        }
+        
+        //Buat ganti Hub-World langsung dari menu dan Story pada awal-awal hub-world
+        else if(PickedHubWorld == "Level1" && PickedLevel == 5){
+            PickedEvent = "Story2";
+            SceneManager.LoadScene("MainStory");
         } else if(PickedHubWorld == "Level2" && PickedLevel == 5){
             PickedHubWorld = "Level3"; PickedLevel = 1;
+            SceneManager.LoadScene("GameplayLevel");
         } else if(PickedHubWorld == "Level3" && PickedLevel == 5){
             PickedHubWorld = "Level4"; PickedLevel = 1;
+            SceneManager.LoadScene("GameplayLevel");
         } else if(PickedHubWorld == "Level4" && PickedLevel == 5){
             PickedHubWorld = "Level5"; PickedLevel = 1;
+            SceneManager.LoadScene("GameplayLevel");
         } else if(PickedHubWorld == "Level5" && PickedLevel == 5){
             PickedHubWorld = "Level6"; PickedLevel = 1;
+            SceneManager.LoadScene("GameplayLevel");
         } else if(PickedHubWorld == "Level6" && PickedLevel == 5){
-            PickedHubWorld = "Level7"; PickedLevel = 1;
+            PickedEvent = "FinalStory";
+            SceneManager.LoadScene("MainStory");
         } else {
             PickedLevel += 1;
+            SceneManager.LoadScene("GameplayLevel");
         }
     }
     public void CurePress(){
         if(LevelGameplay.LevelMoney >= 125){
             LevelGameplay.CureProcess = true;
         }
+    }
+
+    public void ChangeAchievement(bool warna){
+        warna = true;
     }
 
     //Button buat in-game

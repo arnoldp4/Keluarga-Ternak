@@ -641,7 +641,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -862,7 +862,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1044,7 +1044,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1388,10 +1388,10 @@ RectTransform:
   m_Father: {fileID: 1644040850}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 792, y: 316}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &219264582
 MonoBehaviour:
@@ -1775,7 +1775,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2834,7 +2834,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2852,6 +2852,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3134,7 +3145,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3325,7 +3336,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4104,7 +4115,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4714,7 +4725,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5161,26 +5172,26 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: BuatEvent
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level7
+          m_StringArgument: FinalStory
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LevelPicked
-        m_Mode: 3
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MainStory
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -5510,7 +5521,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5731,7 +5742,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5824,7 +5835,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5842,6 +5853,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
+          type: 3}
+        m_MethodName: BuatEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6499,7 +6522,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7303,7 +7326,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7643,14 +7666,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LevelPicked
-        m_Mode: 3
+        m_MethodName: BuatEvent
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Tahun Baru
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
@@ -7662,7 +7685,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level7
+          m_StringArgument: EventStory
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -7822,7 +7845,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8343,7 +8366,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8448,7 +8471,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8937,7 +8960,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10229,7 +10252,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10334,7 +10357,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10883,6 +10906,13 @@ MonoBehaviour:
   Level33: {fileID: 461988041}
   Level34: {fileID: 1317588480}
   Level35: {fileID: 1097180709}
+  HubLv1: {fileID: 567348849}
+  HubLv2: {fileID: 1432403526}
+  HubLv3: {fileID: 661005408}
+  HubLv4: {fileID: 1288538886}
+  HubLv5: {fileID: 1977413045}
+  HubLv6: {fileID: 781615455}
+  HubLv7: {fileID: 1119254962}
 --- !u!1 &1888796945
 GameObject:
   m_ObjectHideFlags: 0
@@ -10976,7 +11006,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11118,7 +11148,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12089,7 +12119,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2875591397807526591, guid: 44094493cd629d947900c0495830674d,
           type: 3}
-        m_MethodName: LoadScene
+        m_MethodName: LoadGameplay
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

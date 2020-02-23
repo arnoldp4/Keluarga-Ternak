@@ -27,12 +27,20 @@ public class DataPlayer : MonoBehaviour
             if(namaTxt.text == "Arnold"){
                 PlayerPrefs.SetString("NamaPlayer1", namaTxt.text);
                 PlayerPrefs.SetInt("LevelPlayer1", 35);
+                PlayerPrefs.SetString("CompleteUser1", "Y"); PlayerPrefs.SetString("EasterUser1", "Y");
+                PlayerPrefs.SetString("CatUser1", "Y"); PlayerPrefs.SetString("CowUser1", "Y");
+                PlayerPrefs.SetString("WoolUser1", "Y"); PlayerPrefs.SetString("SheepUser1", "Y");
+                PlayerPrefs.SetString("DogUser1", "Y"); 
                 CreatedUser1 = true;
                 PlayerPrefs.Save();
             }
             else {
                 PlayerPrefs.SetString("NamaPlayer1", namaTxt.text);
                 PlayerPrefs.SetInt("LevelPlayer1", 1);
+                PlayerPrefs.SetString("CompleteUser1", "N"); PlayerPrefs.SetString("EasterUser1", "N");
+                PlayerPrefs.SetString("CatUser1", "N"); PlayerPrefs.SetString("CowUser1", "N");
+                PlayerPrefs.SetString("WoolUser1", "N"); PlayerPrefs.SetString("SheepUser1", "N");
+                PlayerPrefs.SetString("DogUser1", "N"); 
                 CreatedUser1 = true;
                 PlayerPrefs.Save();
             }
@@ -41,6 +49,10 @@ public class DataPlayer : MonoBehaviour
         if(CreateUserChoice.cekCreateUser == "User2"){
             PlayerPrefs.SetString("NamaPlayer2", namaTxt.text);
             PlayerPrefs.SetInt("LevelPlayer2", 1);
+                PlayerPrefs.SetString("CompleteUser2", "N"); PlayerPrefs.SetString("EasterUser2", "N");
+                PlayerPrefs.SetString("CatUser2", "N"); PlayerPrefs.SetString("CowUser2", "N");
+                PlayerPrefs.SetString("WoolUser2", "N"); PlayerPrefs.SetString("SheepUser2", "N");
+                PlayerPrefs.SetString("DogUser2", "N"); 
             CreatedUser2 = true;
             PlayerPrefs.Save();
         }}

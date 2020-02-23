@@ -14,14 +14,20 @@ public class LevelStatus : MonoBehaviour
          Level22, Level23, Level24, Level25, NextHB5, //Hub World 5
          Level27, Level28, Level29, Level30, NextHB6, //Hub World 6
          Level32, Level33, Level34, Level35; //Final Hub World
+    public GameObject HubLv1, HubLv2, HubLv3, HubLv4, HubLv5, HubLv6, HubLv7;
     int clevel;
-    GameObject[] LevelArray;
     // Start is called before the first frame update
     void Start()
     {
         if(PlayerPrefs.GetString("CurrentUser") == "User1") clevel = PlayerPrefs.GetInt("LevelPlayer1");
         else if (PlayerPrefs.GetString("CurrentUser") == "User2") clevel = PlayerPrefs.GetInt("LevelPlayer2");
         Debug.Log("Level Sekarang: " + clevel);
+        if(clevel>=31) {HubLv1.SetActive(false); HubLv7.SetActive(true);}
+        else if(clevel>=26) {HubLv1.SetActive(false); HubLv6.SetActive(true);}
+        else if(clevel>=21) {HubLv1.SetActive(false); HubLv5.SetActive(true);}
+        else if(clevel>=16) {HubLv1.SetActive(false); HubLv4.SetActive(true);}
+        else if(clevel>=11) {HubLv1.SetActive(false); HubLv3.SetActive(true);}
+        else if(clevel>=6) {HubLv1.SetActive(false); HubLv2.SetActive(true);}
     }
 
     // Update is called once per frame
