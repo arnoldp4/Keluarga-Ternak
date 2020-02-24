@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Achievements.unity
     guid: 4d60eb7568b92d14a97a5d8802c4834d
+  - enabled: 1
+    path: Assets/Scenes/DioramaEdukasi.unity
+    guid: fd5444b035c418d468cd3a076b92da65
   m_configObjects: {}
