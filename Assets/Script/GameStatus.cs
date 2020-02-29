@@ -60,6 +60,7 @@ public class GameStatus : MonoBehaviour
         } else {
             PickedLevel += 1;
         }
+        SceneManager.LoadScene("GameplayManager");
     }
     public void CurePress(){
         if(LevelGameplay.LevelMoney >= 125){

@@ -11,6 +11,7 @@ public class DataPlayer : MonoBehaviour
     public static bool CreatedUser1, CreatedUser2;
     public Button User1Btn, CreatedUser1Btn, User2Btn, CreatedUser2Btn,
         DeleteUser1Btn, DeleteUser2Btn;
+    public GameObject SelectLvlBtn, ProgressCheckBtn;
     // Start is called before the first frame update
     void Start()
     {
@@ -93,5 +94,14 @@ public class DataPlayer : MonoBehaviour
         else if (PlayerPrefs.GetString("CurrentUser") == "User2")
             {CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer2");
             WelcomeTxt.text = "Welcome, " + PlayerPrefs.GetString("NamaPlayer2");}
+
+        if(PlayerPrefs.GetString("NamaPlayer1") == "NULL" && PlayerPrefs.GetString("NamaPlayer2") == "NULL"){
+            SelectLvlBtn.SetActive(false);
+            ProgressCheckBtn.SetActive(false);
+            WelcomeTxt.text = "Welcome, please create your user!";
+        } else {
+            SelectLvlBtn.SetActive(true);
+            ProgressCheckBtn.SetActive(true);
+        }
     }
 }
