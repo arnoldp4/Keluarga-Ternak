@@ -13,6 +13,7 @@ public class LevelGameplay : MonoBehaviour
         LevelSusu, LevelButter, LevelKeju, //Bahan dari Sapi
         LevelWol, LevelBenang, LevelKain, //Bahan dari Domba
         LevelSirup, LevelPancake, LevelTepung, LevelPizza, LevelCat, LevelBaju; //Bahan khusus untuk bangunan tertentu
+    
     //Variable buat apply yang ada di Level
     public Text CurrentLvlTxt, FirstCurrentLvlTxt, EventTxt, FirstGoalTxt,
         PasarMoneyTxt, TransporterMoneyTxt, StorageMoneyTxt, MoneyTxt, WellTxt, GoalTxt, BtnWellTxt,
@@ -20,7 +21,7 @@ public class LevelGameplay : MonoBehaviour
         SusuTxt, MentegaTxt, KejuTxt,
         WolTxt, BenangTxt, KainTxt, 
         SirupTxt, PancakeTxt, TepungTxt, PizzaTxt, CatTxt, BajuTxt;
-    public static bool CureProcess;
+    public static bool CureProcess; //Untuk proses cek apakah ada hewan yang perlu disehatkan
     
     //Variable buat satu level
     string namagoal, kondisiEvent; int targetgoal; //Goal yang berlaku 1 goal saja
@@ -29,8 +30,14 @@ public class LevelGameplay : MonoBehaviour
     public GameObject GameCanvas, ResultCanvas, FirstPageCanvas,
         BuildPanel, EggPanel, MilkPanel, WoolPanel,
         PancakePanel, PizzaPanel, ClothesPanel;
+
+    //Variable buat spawn hewan produktif dan non-produktif
     public RawImage AyamObj, SapiObj, DombaObj, AnjingObj, KucingObj,
         AyamSakitObj, SapiSakitObj, DombaSakitObj;
+    //Variable buat spawn
+    Vector3 targetPosition;
+
+    //Variable buat button-button yang ada di game
     public Button TransporterBtn, AyamBtn, SapiBtn, DombaBtn, AnjingBtn, KucingBtn, BeruangObj, TikusObj,
         DEHLock, DEH, BakeryLock, Bakery,
         DairyLock, Dairy, CheeseLock, Cheese,
@@ -39,13 +46,16 @@ public class LevelGameplay : MonoBehaviour
         PancakeLock, Pancake, PizzaLock, Pizza, 
         BoutiqueLock, Boutique, SembuhBtn, 
         PancakeChangeBtn, PizzaChangeBtn, BoutiqueChangeBtn;
-    Vector3 targetPosition;
-    Random randomSpawn = new Random();
+    
     bool sudahNaikLevel = false, mauSpecial = false,
         cekPancakeKeluar = false, cekPizzaKeluar = false, cekBajuKeluar = false;
     int LevelAyam = 0, LevelSapi = 0, LevelDomba = 0;
-    float timerKucing = 7f;
+    float timerKucing = 4f; 
     public static int LevelPicked, TutorialRumput;
+
+    //Variable buat cek Achievements
+    public static int LevelKucing, LevelAnjing;
+    public static bool CekAchieveDomba = false, CekAchieveWol = false, CekAchieveSapi = false;
 
     // Start is called before the first frame update
     void Start()
@@ -311,7 +321,10 @@ public class LevelGameplay : MonoBehaviour
 #endregion
         //Cek Uang di bagian Binatang
         BinatangButtons();
+        //Cek untuk Achievements
+        cekAchievements();
     }
+
     void HasilResult(){
         GameCanvas.SetActive(false);
         ResultCanvas.SetActive(true);
@@ -329,6 +342,12 @@ public class LevelGameplay : MonoBehaviour
                 }
             }
         sudahNaikLevel = true;}
+    }
+
+    void cekAchievements(){
+        if(LevelDomba >= 20) CekAchieveDomba = true;
+        if(LevelSapi >= 1) CekAchieveSapi = true;
+        if(LevelWol >= 12) CekAchieveWol = true;
     }
 
     void cheat1000MoneyPlusAllMatsPlus10(){
@@ -520,7 +539,7 @@ public class LevelGameplay : MonoBehaviour
         targetPosition = new Vector3(x, y, 0);
         var sapi = Instantiate(AnjingObj,targetPosition,Quaternion.identity);
         sapi.transform.SetParent(GameCanvas.transform, false);
-        LevelMoney -= 400;
+        LevelMoney -= 400; LevelAnjing+=1;
     }
     void SpawnKucing(){
         int x = Random.Range(-130, 130);
@@ -528,7 +547,7 @@ public class LevelGameplay : MonoBehaviour
         targetPosition = new Vector3(x, y, 0);
         var sapi = Instantiate(KucingObj,targetPosition,Quaternion.identity);
         sapi.transform.SetParent(GameCanvas.transform, false);
-        LevelMoney -= 800;
+        LevelMoney -= 800; LevelKucing+=1;
     }
     #endregion
     #region Part 2: Buildings

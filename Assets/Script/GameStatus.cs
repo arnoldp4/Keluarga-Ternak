@@ -58,7 +58,7 @@ public class GameStatus : MonoBehaviour
         } else if(PickedHubWorld == "Level6" && PickedLevel == 4){
             PickedLevel+=1; PickedEvent = "Natal";
             SceneManager.LoadScene("EventStory");
-        } else if(PickedHubWorld == "Level7" && PickedLevel == 4){
+        } else if(PickedHubWorld == "Level7" && PickedLevel == 3){
             PickedLevel+=1; PickedEvent = "Tahun Baru";
             SceneManager.LoadScene("EventStory");
         } else if(PickedHubWorld == "Level2" && PickedLevel == 4){

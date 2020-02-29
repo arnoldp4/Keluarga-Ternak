@@ -16,7 +16,6 @@ public class TransporterTextManager : MonoBehaviour
     public Slider TPProgressBar;
     public Button SellBtnCek;
     int datangTransporter, kembaliTransporter;
-    bool ctrDatangKembali = false;
 
     void Start() {
         
@@ -57,7 +56,7 @@ public class TransporterTextManager : MonoBehaviour
         if(cekTransporter == false){
         LevelGameplay.LevelMoney += TransporterManager.totaljual;
         TransporterManager.totaljual = 0; TPProgressBar.value = TPProgressBar.minValue;
-        datangTransporter = 0; kembaliTransporter = 0; ctrDatangKembali = false; cekTransporter = false;
+        datangTransporter = 0; kembaliTransporter = 0; cekTransporter = false;
         TPProgressBar.gameObject.SetActive(false);}
     }
 }

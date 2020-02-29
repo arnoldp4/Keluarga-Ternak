@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FirebaseTest.unity
     guid: 4bf69f1d4d2e38b4ea07f657d63db422
-  - enabled: 0
-    path: Assets/Scenes/PSTest.unity
-    guid: 30248b5bbfed03f40ab864498eb82a89
   - enabled: 1
     path: Assets/Scenes/SelectLevel.unity
     guid: 6efa15009944c234d942e6446d4382fb
@@ -29,7 +26,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Achievements.unity
     guid: 4d60eb7568b92d14a97a5d8802c4834d
-  - enabled: 1
-    path: Assets/Scenes/DioramaEdukasi.unity
-    guid: fd5444b035c418d468cd3a076b92da65
   m_configObjects: {}
