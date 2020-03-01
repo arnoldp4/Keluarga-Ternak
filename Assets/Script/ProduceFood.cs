@@ -58,7 +58,7 @@ public class ProduceFood : MonoBehaviour
     void SpawnGrass() {
         if(Time.timeScale != 0){
             if(LevelGameplay.UpgradeWell != 5){
-                if(Input.GetMouseButtonDown(0) && LeafDeadManual == false)
+                if((Input.GetMouseButtonDown(0)) && LeafDeadManual == false)
                 {
                     MP=Input.mousePosition;
                     //Convert the targetPosition according to Mouse Position 

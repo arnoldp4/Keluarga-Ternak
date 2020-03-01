@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8591245336973880427}
   - component: {fileID: 8908151039141657742}
   - component: {fileID: 1399692552631824007}
+  - component: {fileID: 8454925141790934604}
   m_Layer: 5
   m_Name: Kucing
   m_TagString: Untagged
@@ -34,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26.608, y: -17.76}
+  m_AnchoredPosition: {x: 0, y: -0.0000019073486}
   m_SizeDelta: {x: 46.784, y: 64.49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8908151039141657742
@@ -72,3 +73,22 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!95 &8454925141790934604
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7705984117111187719}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 532259f2597953648b4a7d452c675580, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

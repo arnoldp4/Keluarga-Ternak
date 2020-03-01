@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8692994683863755029}
   - component: {fileID: 374854147558396638}
   - component: {fileID: 1643492106103807697}
+  - component: {fileID: 8567048721054641531}
   m_Layer: 5
   m_Name: Anjing
   m_TagString: Untagged
@@ -34,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 79.9, y: 24.995}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 36.21, y: 49.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &374854147558396638
@@ -72,3 +73,22 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!95 &8567048721054641531
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853706487434048720}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3aabc53d2cc4e1e49aa2be0ff29b6d07, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

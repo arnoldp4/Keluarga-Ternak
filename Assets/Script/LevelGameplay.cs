@@ -192,13 +192,14 @@ public class LevelGameplay : MonoBehaviour
         CurrentLvlTxt.text = "Level " + LevelPicked.ToString();
         kondisiEvent = GameStatus.PickedEvent;
         if(kondisiEvent != "None"){
+            EventTxt.gameObject.SetActive(true);
             GoalTxt.text = GoalTxt.text + "\n\r Event: " + kondisiEvent;
             if(kondisiEvent == "Musim Ayam") EventTxt.text = "Event = Musim Ayam\n\r\n\rTelur jadi dua kali keluar!!";
             else if(kondisiEvent == "Hari Paskah") EventTxt.text = "Event = Hari Paskah\n\r\n\rHarga jual telur naik!!";
             else if(kondisiEvent == "Imlek") EventTxt.text = "Event = Imlek\n\r\n\rHarga beli di pasar naik!!";
             else if(kondisiEvent == "Natal") EventTxt.text = "Event = Natal\n\r\n\rDomba Buy 1 Get 2!!";
             else if(kondisiEvent == "Tahun Baru") EventTxt.text = "Event = Tahun Baru\n\r\n\rHewan selalu serba sehat!!";
-        } else EventTxt.gameObject.SetActive(false);
+        } else if(kondisiEvent == "None") EventTxt.gameObject.SetActive(false);
 
         if(PancakePanel.activeInHierarchy == false) PancakeChangeBtn.gameObject.SetActive(false);
             else PancakeChangeBtn.gameObject.SetActive(true);
@@ -656,7 +657,6 @@ public class LevelGameplay : MonoBehaviour
         }
     }
     void CreatePizza(){
-            Debug.Log("Berhasil masuk untuk buat Pizza!");
         if(LevelButter >= 3 && LevelTepung >= 3){
             LevelPizza ++; LevelButter -= 3; LevelTepung -= 3;
         }

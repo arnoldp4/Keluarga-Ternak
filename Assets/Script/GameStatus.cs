@@ -37,7 +37,7 @@ public class GameStatus : MonoBehaviour
         NamaHubLevel = SceneManager.GetActiveScene().name;
     }
     public void RestartHubLevel(){
-        SceneManager.LoadScene(NamaHubLevel);
+        SceneManager.LoadScene("GameplayLevel");
     }
 
     //Button buat ganti level selanjutnya
