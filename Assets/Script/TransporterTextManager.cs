@@ -39,7 +39,7 @@ public class TransporterTextManager : MonoBehaviour
         TepungTxt.text = "Tepung: " + TransporterManager.jualtepung; CatTxt.text = "Ember Cat: " + TransporterManager.jualcat;
         PancakeTxt.text = "Pancake: " + TransporterManager.jualpancake; PizzaTxt.text = "Pizza: " + TransporterManager.jualpizza;
         BajuTxt.text = "Baju: " + TransporterManager.jualbaju;
-        ApplySellTxt.text = "Total Jual: " + TransporterManager.totaljual + " [Max: " + LevelGameplay.UpgradeTransporter + "]";
+        ApplySellTxt.text = "Total Jual: " + TransporterManager.totaljual + " [Max: " + LevelGameplay.TransporterMax + "]";
     }
 
     void LoadingDelivery(){
