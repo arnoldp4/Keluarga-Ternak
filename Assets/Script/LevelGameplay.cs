@@ -27,18 +27,19 @@ public class LevelGameplay : MonoBehaviour
     string namagoal, kondisiEvent; int targetgoal; //Goal yang berlaku 1 goal saja
 
     //Variable buat selesai level
-    public GameObject GameCanvas, ResultCanvas, FirstPageCanvas,
+    public GameObject GameCanvas, ResultCanvas, FirstPageCanvas, EventPanel,
         BuildPanel, EggPanel, MilkPanel, WoolPanel,
         PancakePanel, PizzaPanel, ClothesPanel;
 
     //Variable buat spawn hewan produktif dan non-produktif
-    public RawImage AyamObj, SapiObj, DombaObj, AnjingObj, KucingObj,
+    public RawImage RumputObj, AyamObj, SapiObj, DombaObj, AnjingObj, KucingObj,
         AyamSakitObj, SapiSakitObj, DombaSakitObj;
     //Variable buat spawn
     Vector3 targetPosition;
 
     //Variable buat button-button yang ada di game
-    public Button TransporterBtn, AyamBtn, SapiBtn, DombaBtn, AnjingBtn, KucingBtn, BeruangObj, TikusObj,
+    public Button TransporterBtn, AyamBtn, SapiBtn, DombaBtn, AnjingBtn, KucingBtn, RumputBtn,
+        BeruangObj, TikusObj,
         DEHLock, DEH, BakeryLock, Bakery,
         DairyLock, Dairy, CheeseLock, Cheese,
         SpinneryLock, Spinnery, FabricLock, Fabric,
@@ -50,8 +51,13 @@ public class LevelGameplay : MonoBehaviour
     bool sudahNaikLevel = false, mauSpecial = false,
         cekPancakeKeluar = false, cekPizzaKeluar = false, cekBajuKeluar = false;
     int LevelAyam = 0, LevelSapi = 0, LevelDomba = 0;
-    float timerKucing = 4f; 
+    float timerKucing = 3f; 
     public static int LevelPicked, TutorialRumput;
+    
+    int[,] PosisiSpawn = new int[,] {{-230, -200, -155, -130, -115, -105, -75, -45, -15, 
+        15, 45, 75, 105, 130, 170, 200, 230}, 
+        {-90, -80, -75, -65, -55, -45, -35, -25, -15, -5, 
+            5, 25, 45, 65, 85, 95, 105}};
 
     //Variable buat cek Achievements
     public static int LevelKucing, LevelAnjing;
@@ -60,18 +66,19 @@ public class LevelGameplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.FindGameObjectWithTag("Music").GetComponent<DoNotDestroy>().StopMusic();
         FirstPageCanvas.SetActive(true); Time.timeScale = 0;
         sudahNaikLevel = false; TransporterMax = 5; TPDeliveryTime = 500;
         ResultCanvas.SetActive(false);
         RevertAllIngredientsToZero();
-        SpecialIngredients(true, true, true, true);
         if(GameStatus.PickedHubWorld == "Level1"){
             if(GameStatus.PickedLevel == 1){
                 LevelMoney = 100; LevelWell = 5;
                 targetgoal = 10; namagoal = "Rumput";
                 BuildPanel.SetActive(false); LevelPicked = 1;
-                GoalTxt.text = "Goals: \r\n";
-                GoalTxt.text = GoalTxt.text + namagoal + ": " + targetgoal;
+                GoalTxt.text = "Goal: \r\n";
+                FirstGoalTxt.text = GoalTxt.text = GoalTxt.text + namagoal + ": " + targetgoal;
+                FirstCurrentLvlTxt.text = "Level " + LevelPicked;
             } else if(GameStatus.PickedLevel == 2){
                 BuatLevel(300, 2, "Ayam");
                 ApplyLevel(false, false, false, false, false, false, false, 2);
@@ -137,6 +144,7 @@ public class LevelGameplay : MonoBehaviour
                 ApplyLevel(true, true, true, true, false, false, false, 20);
             }
         } else if(GameStatus.PickedHubWorld == "Level5"){
+        SpecialIngredients(true, true, true, false);
             if(GameStatus.PickedLevel == 1){
                 BuatLevel(1500, 5, "Domba");
                 ApplyLevel(true, true, true, true, false, false, false, 21);
@@ -167,6 +175,7 @@ public class LevelGameplay : MonoBehaviour
                 BuatLevel(7500, 7, "Pizza");
                 ApplyLevel(true, true, true, true, true, true, false, 29);
             } else if(GameStatus.PickedLevel == 5){
+                SpecialIngredients(true, true, true, true);
                 BuatLevel(8880, 8, "Baju");
                 ApplyLevel(true, true, true, true, true, true, true, 30);
             }
@@ -199,7 +208,7 @@ public class LevelGameplay : MonoBehaviour
             else if(kondisiEvent == "Imlek") EventTxt.text = "Event = Imlek\n\r\n\rHarga beli di pasar naik!!";
             else if(kondisiEvent == "Natal") EventTxt.text = "Event = Natal\n\r\n\rDomba Buy 1 Get 2!!";
             else if(kondisiEvent == "Tahun Baru") EventTxt.text = "Event = Tahun Baru\n\r\n\rHewan selalu serba sehat!!";
-        } else if(kondisiEvent == "None") EventTxt.gameObject.SetActive(false);
+        } else if(kondisiEvent == "None") {EventTxt.gameObject.SetActive(false); EventPanel.SetActive(false);}
 
         if(PancakePanel.activeInHierarchy == false) PancakeChangeBtn.gameObject.SetActive(false);
             else PancakeChangeBtn.gameObject.SetActive(true);
@@ -223,9 +232,8 @@ public class LevelGameplay : MonoBehaviour
 
     void BuatLevel(int money, int goal, string tgoal){
         LevelMoney = money; targetgoal = goal; namagoal = tgoal;
-        RevertAllIngredientsToZero();
-        MoneyTxt.text = "Uang: " + LevelMoney; WellTxt.text = "Sumur: " + LevelWell;
-        GoalTxt.text = "Goals: \r\n";
+        RevertAllIngredientsToZero(); WellTxt.text = "Sumur: " + LevelWell;
+        GoalTxt.text = "Goal: \r\n";
         FirstGoalTxt.text = GoalTxt.text = GoalTxt.text + namagoal + ": " + targetgoal;
     }
     void ApplyLevel(bool bpanel, bool ePanel, bool mPanel, 
@@ -270,7 +278,7 @@ public class LevelGameplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PasarMoneyTxt.text = TransporterMoneyTxt.text = StorageMoneyTxt.text = MoneyTxt.text = "Uang: " + LevelMoney; 
+        PasarMoneyTxt.text = TransporterMoneyTxt.text = StorageMoneyTxt.text = MoneyTxt.text = LevelMoney.ToString();
         if(UpgradeWell != 5) {WellTxt.text = "Sumur: " + LevelWell; BtnWellTxt.text = "Isi Sumur";}
             else {
                 if(ProduceFood.OnOffLeaf == true) {WellTxt.text = "Sumur ON"; BtnWellTxt.text = "Matikan";}
@@ -438,6 +446,7 @@ public class LevelGameplay : MonoBehaviour
     void Awake()
     {
         //Listener Hewan
+        RumputBtn.onClick.AddListener(SpawnRumput);
         AyamBtn.onClick.AddListener(SpawnAyam);
         SapiBtn.onClick.AddListener(SpawnSapi);
         DombaBtn.onClick.AddListener(SpawnDomba);
@@ -465,15 +474,23 @@ public class LevelGameplay : MonoBehaviour
         Boutique.onClick.AddListener(CreateClothes);
     }
 #region Handle the onClick event
+    void SpawnRumput(){
+        if(LevelWell != 0){
+            int x = Random.Range(0, 17); int y = Random.Range(0, 17);
+            targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
+            var rumput = Instantiate(RumputObj,targetPosition,Quaternion.identity);
+            rumput.transform.SetParent(GameCanvas.transform, false);
+            TutorialRumput+=1; LevelWell-=1;
+        }
+    }
     #region Part 1: Spawn animals
     void SpawnAyam()
     {
-        int x = Random.Range(-150, 150);
-        int y = Random.Range(-50, 50);
-        targetPosition = new Vector3(x, y, 0);
+        int x = Random.Range(0, 17); int y = Random.Range(0, 17);
+        targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         if(CureProcess == false){
             int RNGSakit = Random.Range(1, 100);
-            int RNGSakitTarget = 190;
+            int RNGSakitTarget = 90;
             if(kondisiEvent == "Tahun Baru") RNGSakitTarget = 0;
             if(RNGSakit >= RNGSakitTarget && RNGSakitTarget != 0){
                 var ayam = Instantiate(AyamSakitObj,targetPosition,Quaternion.identity);
@@ -489,9 +506,8 @@ public class LevelGameplay : MonoBehaviour
         }
     }
     void SpawnSapi(){
-        int x = Random.Range(-130, 130);
-        int y = Random.Range(-50, 50);
-        targetPosition = new Vector3(x, y, 0);
+        int x = Random.Range(0, 17); int y = Random.Range(0, 17);
+        targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         if(CureProcess == false){
             int RNGSakit = Random.Range(1, 200);
             int RNGSakitTarget = 170;
@@ -510,9 +526,8 @@ public class LevelGameplay : MonoBehaviour
         }
     }
     void SpawnDomba(){
-        int x = Random.Range(-130, 130);
-        int y = Random.Range(-50, 50);
-        targetPosition = new Vector3(x, y, 0);
+        int x = Random.Range(0, 17); int y = Random.Range(0, 17);   
+        targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         if(CureProcess == false){
             int RNGSakit = Random.Range(1, 200);
             int RNGSakitTarget = 180;
@@ -535,17 +550,15 @@ public class LevelGameplay : MonoBehaviour
         }
     }
     void SpawnAnjing(){
-        int x = Random.Range(-130, 130);
-        int y = Random.Range(-50, 50);
-        targetPosition = new Vector3(x, y, 0);
+        int x = Random.Range(0, 17); int y = Random.Range(0, 17);
+        targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         var sapi = Instantiate(AnjingObj,targetPosition,Quaternion.identity);
         sapi.transform.SetParent(GameCanvas.transform, false);
         LevelMoney -= 400; LevelAnjing+=1;
     }
     void SpawnKucing(){
-        int x = Random.Range(-130, 130);
-        int y = Random.Range(-50, 50);
-        targetPosition = new Vector3(x, y, 0);
+        int x = Random.Range(0, 17); int y = Random.Range(0, 17);
+        targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         var sapi = Instantiate(KucingObj,targetPosition,Quaternion.identity);
         sapi.transform.SetParent(GameCanvas.transform, false);
         LevelMoney -= 800; LevelKucing+=1;

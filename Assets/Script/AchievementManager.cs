@@ -88,6 +88,5 @@ public class AchievementManager : MonoBehaviour
                 if(cekCat == true) achieveText.text += "CFF Ever!\n\r";
                 if(cekDog == true) achieveText.text += "Too much DFF!!\n\r";
             } else achieveText.gameObject.SetActive(false);
-        Debug.Log(achieveText.text);
     }
 }

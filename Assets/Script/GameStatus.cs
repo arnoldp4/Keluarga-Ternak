@@ -113,13 +113,6 @@ public class GameStatus : MonoBehaviour
             }
     }
 
-    public void ChangeLeaf(){
-        if(ProduceFood.LeafDeadManual == false){
-            ProduceFood.LeafDeadManual = true;
-        } else {
-            ProduceFood.LeafDeadManual = false;
-        }
-    }
     public void Quit ()
     {
         #if UNITY_EDITOR

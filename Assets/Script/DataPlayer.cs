@@ -11,14 +11,21 @@ public class DataPlayer : MonoBehaviour
     public static bool CreatedUser1, CreatedUser2;
     public Button User1Btn, CreatedUser1Btn, User2Btn, CreatedUser2Btn,
         DeleteUser1Btn, DeleteUser2Btn;
+    public GameObject EncycloBtn, AchieveBtn, SelectLvlBtn;
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.FindGameObjectWithTag("Music").GetComponent<DoNotDestroy>().PlayMusic();
         if(PlayerPrefs.GetString("NamaPlayer1") != "NULL") CreatedUser1 = true;
             else CreatedUser1 = false;
         if(PlayerPrefs.GetString("NamaPlayer2") != "NULL") CreatedUser2 = true;
             else CreatedUser2 = false;
-        Debug.Log("User 1: " + CreatedUser1 + " & " + CreatedUser2);
+        if(PlayerPrefs.GetString("NamaPlayer1") == "NULL" && PlayerPrefs.GetString("NamaPlayer2") == "NULL"){
+            EncycloBtn.SetActive(false); AchieveBtn.SetActive(false); SelectLvlBtn.SetActive(false);
+            WelcomeTxt.text = "Please create your save!!";
+        } else {
+            EncycloBtn.SetActive(true); AchieveBtn.SetActive(true); SelectLvlBtn.SetActive(true);
+        }
     }
 
     public void SavePrefs(){
@@ -70,7 +77,13 @@ public class DataPlayer : MonoBehaviour
     public void DeletePrefs(string UserDelete){
         if(UserDelete == "User1") {CreatedUser1 = false; PlayerPrefs.SetString("NamaPlayer1", "NULL");}
             else {CreatedUser2 = false; PlayerPrefs.SetString("NamaPlayer2", "NULL");}
+
+        if(PlayerPrefs.GetString("NamaPlayer1") == "NULL" || PlayerPrefs.GetString("NamaPlayer2") == "NULL"){ 
+            PlayerPrefs.SetString("CurrentUser", "NULL");
+            CurrentUserTxt.text = "There is no save selected yet.";
+        }
         PlayerPrefs.Save();
+        namaTxt.text = null;
     }
 
     // Update is called once per frame
@@ -100,10 +113,16 @@ public class DataPlayer : MonoBehaviour
             DeleteUser2Btn.gameObject.SetActive(false);
         }
         if(PlayerPrefs.GetString("CurrentUser") == "User1")
-            {CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer1");
+            {EncycloBtn.SetActive(true); AchieveBtn.SetActive(true); SelectLvlBtn.SetActive(true);
+            CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer1");
             WelcomeTxt.text = "Welcome, " + PlayerPrefs.GetString("NamaPlayer1");}
         else if (PlayerPrefs.GetString("CurrentUser") == "User2")
-            {CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer2");
+            {EncycloBtn.SetActive(true); AchieveBtn.SetActive(true); SelectLvlBtn.SetActive(true);
+            CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer2");
             WelcomeTxt.text = "Welcome, " + PlayerPrefs.GetString("NamaPlayer2");}
+        else if(PlayerPrefs.GetString("CurrentUser") == "NULL"){
+            EncycloBtn.SetActive(false); AchieveBtn.SetActive(false); SelectLvlBtn.SetActive(false);
+            WelcomeTxt.text = "Please create your save!!";
+        }
     }
 }

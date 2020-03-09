@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SelectLevel.unity
     guid: 6efa15009944c234d942e6446d4382fb
   - enabled: 1
+    path: Assets/Scenes/DioramaEdukasi.unity
+    guid: 9cff8794a48d5456bba60b9a37406ad7
+  - enabled: 1
     path: Assets/Scenes/MainStory.unity
     guid: 5f1f334cc8fc7f4429fa278d33f40e55
   - enabled: 1

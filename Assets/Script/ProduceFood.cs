@@ -11,11 +11,13 @@ public class ProduceFood : MonoBehaviour
     public Button telurBtn, LeafBtn, susuBtn, wolBtn, BeruangBtn, TikusBtn;
 
     //Bool buat matikan Coroutine
-    public static bool LeafDeadManual, OnOffLeaf;
+    public static bool OnOffLeaf;
     float waktuMusuhSpawn = 30f; float waktuLeafHancur = 2f;
     //Array buat posisi
-    int[,] PosisiSpawn = new int[,] {{-155, -130, -115, -105, -75, -45, -15, 15, 45, 75, 105, 115, 130, 155, 170, 190}, 
-        {-75, -65, -55, -45, -35, -25, -15, -5, 5, 15, 25, 35, 45, 55, 65, 75}};
+    int[,] PosisiSpawn = new int[,] {{-230, -200, -155, -130, -115, -105, -75, -45, -15, 
+        15, 45, 75, 105, 130, 170, 200, 230}, 
+        {-90, -80, -75, -65, -55, -45, -35, -25, -15, -5, 
+            5, 25, 45, 65, 85, 95, 105}};
     // Start is called before the first frame update
     void Start()
     {
@@ -57,26 +59,8 @@ public class ProduceFood : MonoBehaviour
 
     void SpawnGrass() {
         if(Time.timeScale != 0){
-            if(LevelGameplay.UpgradeWell != 5){
-                if((Input.GetMouseButtonDown(0)) && LeafDeadManual == false)
-                {
-                    MP=Input.mousePosition;
-                    //Convert the targetPosition according to Mouse Position 
-                    targetPosition = new Vector3(MP.x-405, MP.y-100, 0);
-                    Debug.Log("Ditekan");
-                    float cekx = targetPosition.x - plain.transform.position.x,
-                        ceky = targetPosition.y - plain.transform.position.y;
-                    if(cekx >= -580 && cekx <= -230 && ceky <= 80 && ceky >= -60)
-                    {
-                        LevelGameplay.LevelWell-=1; var grass = Instantiate(grassObj,targetPosition,Quaternion.identity);
-                        grass.transform.SetParent(plain.transform, false);
-                        if(LevelGameplay.LevelPicked == 1){
-                            LevelGameplay.TutorialRumput += 1;
-                        }
-                    }
-                }
-            } else {
-                int x = Random.Range(0, 12); int y = Random.Range(0, 12);
+            if(LevelGameplay.UpgradeWell == 5){
+                int x = Random.Range(0, 17); int y = Random.Range(0, 17);
                 targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
                 var rumput = Instantiate(grassObj,targetPosition,Quaternion.identity);
                 rumput.transform.SetParent(plain.transform, false);
@@ -86,8 +70,6 @@ public class ProduceFood : MonoBehaviour
     }
 
     void CheckingGO(){
-        if (LeafDeadManual == false) TurnRed();
-        else TurnWhite();
         if((GameObject.Find("Ayam(Clone)") || GameObject.Find("Sapi(Clone)") || GameObject.Find("Domba(Clone)")
             || GameObject.Find("AyamSakit(Clone)") || GameObject.Find("SapiSakit(Clone)") || GameObject.Find("DombaSakit(Clone)"))
             && GameObject.Find("Leaf(Clone)")){
@@ -122,40 +104,23 @@ public class ProduceFood : MonoBehaviour
             }
         } 
     }
-    public void TurnRed()
-    {
-        ColorBlock colors = LeafBtn.colors;
-        colors.normalColor = Color.red;
-        colors.highlightedColor = new Color32(100, 100, 100, 100);
-        LeafBtn.colors = colors;
-    }
-    public void TurnWhite()
-    {
-        ColorBlock colors = LeafBtn.colors;
-        colors.normalColor = Color.white;
-        colors.highlightedColor = new Color32(225, 225, 225, 255);
-        LeafBtn.colors = colors;
-    }
 #region Spawn Bahan Utama & Musuh
     void SpawnTelur()
     {
-        int x = Random.Range(0, 12);
-        int y = Random.Range(0, 12);
+        int x = Random.Range(0, 17); int y = Random.Range(0, 17);
         targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         var telur = Instantiate(telurBtn,targetPosition,Quaternion.identity);
         telur.transform.SetParent(plain.transform, false);
     }
     void SpawnSusu(){
-        int x = Random.Range(-140, 140);
-        int y = Random.Range(-55, 50);
-        targetPosition = new Vector3(x, y, 0);
+        int x = Random.Range(0, 17); int y = Random.Range(0, 17);
+        targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         var susu = Instantiate(susuBtn,targetPosition,Quaternion.identity);
         susu.transform.SetParent(plain.transform, false);
     }
     void SpawnWol(){
-        int x = Random.Range(-130, 130);
-        int y = Random.Range(-60, 60);
-        targetPosition = new Vector3(x, y, 0);
+        int x = Random.Range(0, 17); int y = Random.Range(0, 17);
+        targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         var wol = Instantiate(wolBtn,targetPosition,Quaternion.identity);
         wol.transform.SetParent(plain.transform, false);
     }

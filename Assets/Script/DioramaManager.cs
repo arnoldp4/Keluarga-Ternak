@@ -11,7 +11,6 @@ public class DioramaManager : MonoBehaviour
     Image tumpangsprite;
     Sprite gambarSekarang;
     public Image gambarnow;
-    
 
     public void CekEncyclo(string namahewan){
         if(namahewan == "Anjing"){

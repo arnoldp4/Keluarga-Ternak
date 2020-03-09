@@ -17,6 +17,7 @@ public class LevelStatus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.FindGameObjectWithTag("Music").GetComponent<DoNotDestroy>().PlayMusic();
         if(PlayerPrefs.GetString("CurrentUser") == "User1") clevel = PlayerPrefs.GetInt("LevelPlayer1");
         else if (PlayerPrefs.GetString("CurrentUser") == "User2") clevel = PlayerPrefs.GetInt("LevelPlayer2");
         Debug.Log("Level Sekarang: " + clevel);
