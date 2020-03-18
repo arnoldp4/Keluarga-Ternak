@@ -36,7 +36,7 @@ public class PasarManager : MonoBehaviour
             beliSirup++; 
             if(GameStatus.PickedEvent == "Imlek") totalbeli += 40;
             else totalbeli += 25;
-        }
+        } else { jumlahbeli --; }
     }
     public void BuyFlour(){
         cekBatasPesawatUang();
@@ -44,7 +44,7 @@ public class PasarManager : MonoBehaviour
             beliTepung++; 
             if(GameStatus.PickedEvent == "Imlek") totalbeli += 65;
             totalbeli += 50;
-        }
+        } else { jumlahbeli --; }
     }
     public void BuyCanofPaint(){
         cekBatasPesawatUang();
@@ -52,7 +52,7 @@ public class PasarManager : MonoBehaviour
             beliCat++; 
             if(GameStatus.PickedEvent == "Imlek") totalbeli += 115;
             else totalbeli += 100;
-        }
+        } else { jumlahbeli --; }
     }
     public void ApplyToBuy(){
         cekPesawat = true; ctrBeli = true; LevelGameplay.LevelMoney -= totalbeli;

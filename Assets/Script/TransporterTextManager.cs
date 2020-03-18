@@ -11,7 +11,8 @@ public class TransporterTextManager : MonoBehaviour
         SusuTxt, MentegaTxt, KejuTxt,
         WolTxt, BenangTxt, KainTxt,
         SirupTxt, TepungTxt, CatTxt,
-        PancakeTxt, PizzaTxt, BajuTxt;
+        PancakeTxt, PizzaTxt, BajuTxt,
+        AyamTxt, SapiTxt, DombaTxt;
     public static bool cekTransporter = false;
     public Slider TPProgressBar;
     public Button SellBtnCek;
@@ -38,7 +39,8 @@ public class TransporterTextManager : MonoBehaviour
         KainTxt.text = "Kain: " + TransporterManager.jualkain; SirupTxt.text = "Sirup: " + TransporterManager.jualsirup;
         TepungTxt.text = "Tepung: " + TransporterManager.jualtepung; CatTxt.text = "Ember Cat: " + TransporterManager.jualcat;
         PancakeTxt.text = "Pancake: " + TransporterManager.jualpancake; PizzaTxt.text = "Pizza: " + TransporterManager.jualpizza;
-        BajuTxt.text = "Baju: " + TransporterManager.jualbaju;
+        BajuTxt.text = "Baju: " + TransporterManager.jualbaju; AyamTxt.text = "Ayam: " + TransporterManager.jualayam;
+        SapiTxt.text = "Sapi: " + TransporterManager.jualsapi; DombaTxt.text = "Domba: " + TransporterManager.jualdomba;
         ApplySellTxt.text = "Total Jual: " + TransporterManager.totaljual + " [Max: " + LevelGameplay.TransporterMax + "]";
     }
 
@@ -59,4 +61,6 @@ public class TransporterTextManager : MonoBehaviour
         datangTransporter = 0; kembaliTransporter = 0; cekTransporter = false;
         TPProgressBar.gameObject.SetActive(false);}
     }
+
+    
 }

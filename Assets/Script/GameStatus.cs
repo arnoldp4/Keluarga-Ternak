@@ -37,6 +37,7 @@ public class GameStatus : MonoBehaviour
         NamaHubLevel = SceneManager.GetActiveScene().name;
     }
     public void RestartHubLevel(){
+        GameObject.FindGameObjectWithTag("Music").GetComponent<DoNotDestroy>().StopMusic();
         SceneManager.LoadScene("GameplayLevel");
     }
 

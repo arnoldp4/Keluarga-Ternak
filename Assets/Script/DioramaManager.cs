@@ -16,11 +16,13 @@ public class DioramaManager : MonoBehaviour
         if(namahewan == "Anjing"){
             tumpangsprite = Anjing.GetComponent<Image>();
             TitleEncycloTxt.text = "Anjing";
-            EncycloTxt.text = "Anjing adalah hewan mamalia yang memiliki indra penciuman yang sangat tajam. Banyak dari kita memelihara anjing. Selain mudah dijumpai, adanya anjing akan menjaga hewan produktif dari serangan beruang yang ganas!";
+            EncycloTxt.text = "Anjing adalah hewan mamalia yang memiliki indra penciuman yang sangat tajam. " + 
+            "Banyak dari kita memelihara anjing. Selain mudah dijumpai, adanya anjing akan menjaga hewan produktif dari serangan beruang yang ganas!";
         } else if (namahewan == "Kucing"){
             tumpangsprite = Kucing.GetComponent<Image>();
             TitleEncycloTxt.text = "Kucing";
-            EncycloTxt.text = "Kucing merupakan salah satu teman peternak yang setia menemani untuk meminta makanan. Maka dari itu, kebiasaan kucing selalu mengambil produk utama dari hewan produktif.";
+            EncycloTxt.text = "Kucing merupakan salah satu teman peternak yang setia menemani untuk meminta makanan. "
+            + "Maka dari itu, kebiasaan kucing selalu mengambil produk utama dari hewan produktif.";
         } else if(namahewan == "Ayam"){
             tumpangsprite = Ayam.GetComponent<Image>();
             TitleEncycloTxt.text = "Ayam";
@@ -28,7 +30,8 @@ public class DioramaManager : MonoBehaviour
         } else if(namahewan == "Sapi"){
             tumpangsprite = Sapi.GetComponent<Image>();
             TitleEncycloTxt.text = "Sapi";
-            EncycloTxt.text = "Sapi adalah hewan diam namun bersuara keras setelah ketemu dengan teman-temannya. Setiap hari disaat mood dia girang banget, mereka menghasilkan banyak susu! Lebih hebatnya lagi, susu sapi merupakan hasil utama sapi!!";
+            EncycloTxt.text = "Sapi adalah hewan diam namun bersuara keras setelah ketemu dengan teman-temannya." + 
+                " Setiap hari disaat mood dia girang banget, mereka menghasilkan banyak susu! Lebih hebatnya lagi, susu sapi merupakan hasil utama sapi!!";
         } else if(namahewan == "Domba"){
             tumpangsprite = Domba.GetComponent<Image>();
             TitleEncycloTxt.text = "Domba";
