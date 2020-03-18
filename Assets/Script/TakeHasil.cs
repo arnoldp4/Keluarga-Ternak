@@ -7,7 +7,7 @@ public class TakeHasil : MonoBehaviour
 {
     int ctrBeruangTangkap = 0, ctrTikusTanah;
     Image gambarSekarang; Sprite gambarAwal;
-
+    
     void Start(){
         gambarSekarang = gameObject.GetComponent<Image>();
         gambarAwal = gambarSekarang.sprite;
@@ -39,36 +39,43 @@ public class TakeHasil : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         gambarSekarang.sprite = gambarAwal;
         if (ctrBeruangTangkap != 4) ctrBeruangTangkap++;
-        else {Destroy(GameObject.Find("BeruangBtn(Clone)"));
-            ctrBeruangTangkap = 0;} 
+        else {
+            Destroy(gameObject);
+            // Destroy(GameObject.Find("BeruangBtn(Clone)"));
+            ctrBeruangTangkap = 0; LevelGameplay.LevelMoney += 50; LevelGameplay.jumlahBeruang -= 1;} 
     }
     IEnumerator lepasin()
     {
         yield return new WaitForSeconds(.5f);
         gambarSekarang.sprite = gambarAwal;
         if (ctrTikusTanah != 2) ctrTikusTanah++;
-        else {Destroy(GameObject.Find("MoleBtn(Clone)"));
-            ctrTikusTanah = 0;}
+        else {
+            Destroy(gameObject);
+            // Destroy(GameObject.Find("MoleBtn(Clone)"));
+            ctrTikusTanah = 0;  LevelGameplay.LevelMoney += 25;}
     }
     IEnumerator EggPressed()
     {
         yield return new WaitForSeconds(.5f);
         gambarSekarang.sprite = gambarAwal;
         LevelGameplay.LevelTelur += 1;
-        Destroy(GameObject.Find("TelurBtn(Clone)"));
+        Destroy(gameObject);
+        // Destroy(GameObject.Find("TelurBtn(Clone)"));
     }
     IEnumerator MilkPressed()
     {
         yield return new WaitForSeconds(.5f);
         gambarSekarang.sprite = gambarAwal;
         LevelGameplay.LevelSusu += 1;
-        Destroy(GameObject.Find("SusuBtn(Clone)"));
+        Destroy(gameObject);
+        // Destroy(GameObject.Find("SusuBtn(Clone)"));
     }
     IEnumerator WoolPressed()
     {
         yield return new WaitForSeconds(.5f);
         gambarSekarang.sprite = gambarAwal;
         LevelGameplay.LevelWol += 1;
-        Destroy(GameObject.Find("WoolBtn(Clone)"));
+        Destroy(gameObject);
+        // Destroy(GameObject.Find("WoolBtn(Clone)"));
     }
 }

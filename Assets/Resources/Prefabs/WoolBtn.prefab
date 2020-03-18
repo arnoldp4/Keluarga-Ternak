@@ -1,19 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9197723475339349263
+--- !u!1 &463563949856302496
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 371358304473255327, guid: 689dde2654da1db4a968511386f2ec13,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9197723475339349262}
-  - component: {fileID: 9197723475339349267}
-  - component: {fileID: 9197723475339349264}
-  - component: {fileID: 9197723475339349265}
-  - component: {fileID: 7635240386323162997}
+  - component: {fileID: 4589470261678195122}
+  - component: {fileID: 9211024380800367136}
+  - component: {fileID: 8935246849031077960}
+  - component: {fileID: 5686077460776067796}
+  - component: {fileID: 1317973749918361601}
   m_Layer: 5
   m_Name: WoolBtn
   m_TagString: Untagged
@@ -21,14 +20,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &9197723475339349262
+--- !u!224 &4589470261678195122
 RectTransform:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 371358304473255326, guid: 689dde2654da1db4a968511386f2ec13,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9197723475339349263}
+  m_GameObject: {fileID: 463563949856302496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -39,25 +37,23 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 81.67, y: 76.47}
+  m_SizeDelta: {x: 225, y: 225}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &9197723475339349267
+--- !u!222 &9211024380800367136
 CanvasRenderer:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 371358304473255299, guid: 689dde2654da1db4a968511386f2ec13,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9197723475339349263}
+  m_GameObject: {fileID: 463563949856302496}
   m_CullTransparentMesh: 0
---- !u!114 &9197723475339349264
+--- !u!114 &8935246849031077960
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 371358304473255296, guid: 689dde2654da1db4a968511386f2ec13,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9197723475339349263}
+  m_GameObject: {fileID: 463563949856302496}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -80,14 +76,13 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &9197723475339349265
+--- !u!114 &5686077460776067796
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 371358304473255297, guid: 689dde2654da1db4a968511386f2ec13,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9197723475339349263}
+  m_GameObject: {fileID: 463563949856302496}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -117,11 +112,11 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 9197723475339349264}
+  m_TargetGraphic: {fileID: 8935246849031077960}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7635240386323162997}
+      - m_Target: {fileID: 1317973749918361601}
         m_MethodName: TakeWol
         m_Mode: 2
         m_Arguments:
@@ -135,13 +130,13 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &7635240386323162997
+--- !u!114 &1317973749918361601
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9197723475339349263}
+  m_GameObject: {fileID: 463563949856302496}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 376170eabf9c97f4f895e540dea61e94, type: 3}

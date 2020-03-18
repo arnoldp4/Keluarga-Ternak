@@ -12,7 +12,9 @@ public class ProduceFood : MonoBehaviour
 
     //Bool buat matikan Coroutine
     public static bool OnOffLeaf;
-    float waktuMusuhSpawn = 30f; float waktuLeafHancur = 2f;
+    bool waktumati = false;
+    float waktuMusuhSpawn = 15f; float waktuLeafHancur = 3f;
+        int HPLeaf = 1;
     //Array buat posisi
     int[,] PosisiSpawn = new int[,] {{-230, -200, -155, -130, -115, -105, -75, -45, -15, 
         15, 45, 75, 105, 130, 170, 200, 230}, 
@@ -27,11 +29,12 @@ public class ProduceFood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        waktuMusuhSpawn -= Time.deltaTime;
+        if(waktumati == false)
+        {waktuMusuhSpawn -= Time.deltaTime;
         if(waktuMusuhSpawn <= 0.0f) {
-            int pilihMusuh = Random.Range(0, 2);
-            if(pilihMusuh == 0) SpawnBear(); else SpawnMole();
-            waktuMusuhSpawn = 30f;
+            int pilihMusuh = Random.Range(0, 10);
+            if(pilihMusuh >= 5) SpawnBear(); else SpawnMole();
+            waktuMusuhSpawn = 15f;
         }
         CheckingGO();
         if(GameObject.Find("BeruangBtn(Clone)")){
@@ -54,7 +57,7 @@ public class ProduceFood : MonoBehaviour
             int RNGDoLeaf = Random.Range(0, 200);
             if(RNGDoLeaf == 104){
                 if(OnOffLeaf == true) SpawnGrass();}
-        }
+        }}
     }
 
     void SpawnGrass() {
@@ -74,10 +77,11 @@ public class ProduceFood : MonoBehaviour
             || GameObject.Find("AyamSakit(Clone)") || GameObject.Find("SapiSakit(Clone)") || GameObject.Find("DombaSakit(Clone)"))
             && GameObject.Find("Leaf(Clone)")){
             StartCoroutine ( desObj() );
+            waktumati = true;
         }
     }
     void BearActivity(){
-        int targetRNG = 69, RNGKill = Random.Range(0, 3), RNGDoIt = Random.Range(0, 70);
+        int targetRNG = 69, RNGKill = Random.Range(0, 6), RNGDoIt = Random.Range(0, 70);
         if(GameObject.Find("Anjing(Clone)")) {
             RNGDoIt = Random.Range(0, 300);
             targetRNG = 248;
@@ -85,11 +89,15 @@ public class ProduceFood : MonoBehaviour
         if(RNGDoIt == targetRNG){
             if(RNGKill == 0){
                 Destroy(GameObject.Find("Ayam(Clone)"));
+            } else if(RNGKill == 3){
+                Destroy(GameObject.Find("AyamSakit(Clone)"));
             } else if (RNGKill == 1){
-                Destroy(GameObject.Find("Sapi(Clone)"));
-            } else{
-                Destroy(GameObject.Find("Domba(Clone)"));
-            }
+                Destroy(GameObject.Find("Sapi(Clone)")); 
+            } else if (RNGKill == 4){
+                Destroy(GameObject.Find("SapiSakit(Clone)"));
+            } else if(RNGKill == 2){
+                Destroy(GameObject.Find("Domba(Clone)")); 
+            } else Destroy(GameObject.Find("DombaSakit(Clone)"));
         } 
     }
     void MoleActivity(){
@@ -111,18 +119,21 @@ public class ProduceFood : MonoBehaviour
         targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         var telur = Instantiate(telurBtn,targetPosition,Quaternion.identity);
         telur.transform.SetParent(plain.transform, false);
+        // Destroy(telur.gameObject, 5f);
     }
     void SpawnSusu(){
         int x = Random.Range(0, 17); int y = Random.Range(0, 17);
         targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         var susu = Instantiate(susuBtn,targetPosition,Quaternion.identity);
         susu.transform.SetParent(plain.transform, false);
+        // Destroy(susu.gameObject, 5f);
     }
     void SpawnWol(){
         int x = Random.Range(0, 17); int y = Random.Range(0, 17);
         targetPosition = new Vector3(PosisiSpawn[0, x], PosisiSpawn[1, y], 0);
         var wol = Instantiate(wolBtn,targetPosition,Quaternion.identity);
         wol.transform.SetParent(plain.transform, false);
+        // Destroy(wol.gameObject, 5f);
     }
     void SpawnBear(){
         int x = Random.Range(-130, 130);
@@ -130,6 +141,7 @@ public class ProduceFood : MonoBehaviour
         targetPosition = new Vector3(x, y, 0);
         var beruang = Instantiate(BeruangBtn,targetPosition,Quaternion.identity);
         beruang.transform.SetParent(plain.transform, false);
+        LevelGameplay.jumlahBeruang += 1;
     }
     void SpawnMole(){
         int x = Random.Range(-130, 130);
@@ -146,20 +158,19 @@ public class ProduceFood : MonoBehaviour
     IEnumerator desObj(){
         if(Time.timeScale != 0){
             yield return new WaitForSeconds (waktuLeafHancur);
-            int RNGWhoGetFirst = Random.Range(0, 4);
-            if(GameObject.Find("Ayam(Clone)") && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 0){
+            int RNGWhoGetFirst = Random.Range(0, 50);
+            if(GameObject.Find("Ayam(Clone)") && GameObject.Find("Leaf(Clone)") && (RNGWhoGetFirst >= 0 && RNGWhoGetFirst <= 14)){
                 if(GameStatus.PickedEvent == "Musim Ayam"){
                     SpawnTelur(); SpawnTelur();
                 } else SpawnTelur();
-            } else if(GameObject.Find("Sapi(Clone)") && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 1){
+            } else if(GameObject.Find("Sapi(Clone)") && GameObject.Find("Leaf(Clone)") && (RNGWhoGetFirst >= 15 && RNGWhoGetFirst <= 30)){
                 SpawnSusu();
-            } else if(GameObject.Find("Domba(Clone)") && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 2){
+            } else if(GameObject.Find("Domba(Clone)") && GameObject.Find("Leaf(Clone)") && (RNGWhoGetFirst >= 31 && RNGWhoGetFirst <= 50)){
                 SpawnWol();
-            } if((GameObject.Find("Ayam(Clone)") || GameObject.Find("SapiSakit(Clone)") ||
-                GameObject.Find("DombaSakit(Clone)")) && GameObject.Find("Leaf(Clone)") && RNGWhoGetFirst == 3){
-                Destroy(GameObject.Find("Leaf(Clone)"));
-            }
-            Destroy(GameObject.Find("Leaf(Clone)"));
+            } 
+            if(HPLeaf == 0) {Destroy(GameObject.Find("Leaf(Clone)")); HPLeaf = 1;}
+            else HPLeaf--;
+            waktumati = false;
         }
     }
 }

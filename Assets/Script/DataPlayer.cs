@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DataPlayer : MonoBehaviour
 {
-    //Test SAVE LOAD JSON
+    //Test SAVE LOAD JSON 
     public Text namaTxt, User1NameTxt, User1LevelTxt, CurrentUserTxt,
         User2NameTxt, User2LevelTxt, WelcomeTxt;
     public static bool CreatedUser1, CreatedUser2;
@@ -15,6 +15,8 @@ public class DataPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Screen.fullScreen = false;
+	    Screen.SetResolution (1600, 900, true);
         GameObject.FindGameObjectWithTag("Music").GetComponent<DoNotDestroy>().PlayMusic();
         if(PlayerPrefs.GetString("NamaPlayer1") != "NULL") CreatedUser1 = true;
             else CreatedUser1 = false;
@@ -112,6 +114,7 @@ public class DataPlayer : MonoBehaviour
             CreatedUser2Btn.gameObject.SetActive(false);
             DeleteUser2Btn.gameObject.SetActive(false);
         }
+
         if(PlayerPrefs.GetString("CurrentUser") == "User1")
             {EncycloBtn.SetActive(true); AchieveBtn.SetActive(true); SelectLvlBtn.SetActive(true);
             CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer1");
@@ -120,9 +123,10 @@ public class DataPlayer : MonoBehaviour
             {EncycloBtn.SetActive(true); AchieveBtn.SetActive(true); SelectLvlBtn.SetActive(true);
             CurrentUserTxt.text = "Current Player:" + "\r\n" + PlayerPrefs.GetString("NamaPlayer2");
             WelcomeTxt.text = "Welcome, " + PlayerPrefs.GetString("NamaPlayer2");}
-        else if(PlayerPrefs.GetString("CurrentUser") == "NULL"){
+        else if(PlayerPrefs.GetString("CurrentUser") == "NULL" && CreatedUser1 == false && CreatedUser2 == false){
             EncycloBtn.SetActive(false); AchieveBtn.SetActive(false); SelectLvlBtn.SetActive(false);
             WelcomeTxt.text = "Please create your save!!";
+            CurrentUserTxt.text = "There is no save selected yet.";
         }
     }
 }

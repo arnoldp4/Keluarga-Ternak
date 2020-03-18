@@ -20,7 +20,6 @@ public class LevelStatus : MonoBehaviour
         GameObject.FindGameObjectWithTag("Music").GetComponent<DoNotDestroy>().PlayMusic();
         if(PlayerPrefs.GetString("CurrentUser") == "User1") clevel = PlayerPrefs.GetInt("LevelPlayer1");
         else if (PlayerPrefs.GetString("CurrentUser") == "User2") clevel = PlayerPrefs.GetInt("LevelPlayer2");
-        Debug.Log("Level Sekarang: " + clevel);
         if(clevel>=31) {HubLv1.SetActive(false); HubLv7.SetActive(true);}
         else if(clevel>=26) {HubLv1.SetActive(false); HubLv6.SetActive(true);}
         else if(clevel>=21) {HubLv1.SetActive(false); HubLv5.SetActive(true);}
